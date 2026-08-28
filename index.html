@@ -694,6 +694,9 @@ body.konami{ animation:konami 2.2s steps(60); }
   .reveal{ opacity:1; transform:none; }
 }
 
+/* ---------- utilities ---------- */
+.is-disabled{ opacity:.45; cursor:not-allowed; pointer-events:none; }
+
 </style>
 
 <script type="application/ld+json">
@@ -818,8 +821,7 @@ body.konami{ animation:konami 2.2s steps(60); }
           <span class="btn__i" aria-hidden="true">▸</span> Request an audit
         </a>
         <a class="btn btn--ghost" href="#plain">What that means →</a>
-        <!-- Replace /babaskin-cv.pdf with your real CV before deploying -->
-        <a class="btn btn--ghost" href="/babaskin-cv.pdf" target="_blank" rel="noopener">Download CV</a>
+        <span class="btn btn--ghost is-disabled" aria-disabled="true" title="CV will be published soon">CV — soon</span>
       </div>
 
       <ul class="hero__stats reveal">
