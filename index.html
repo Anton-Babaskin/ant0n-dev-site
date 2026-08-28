@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Anton Babaskin — DevOps &amp; Linux Infrastructure Engineer</title>
-<meta name="description" content="DevOps and Linux engineer with 15+ years in production. Infrastructure audits, CI/CD, security hardening, mail deliverability, monitoring, backups and AI-assisted automation. From bare metal to Kubernetes.">
+<meta name="description" content="Anton Babaskin — DevOps &amp; Linux engineer, 15+ years in production. Infrastructure audits, CI/CD, hardening, mail deliverability, monitoring, backups.">
 <meta name="author" content="Anton Babaskin">
 <meta name="theme-color" content="#05080a">
 <meta name="color-scheme" content="dark">
@@ -12,6 +12,8 @@
 
 <!-- Open Graph / Twitter -->
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="ant0n.dev">
+<meta property="og:locale" content="en_US">
 <meta property="og:url" content="https://ant0n.dev/">
 <meta property="og:title" content="Anton Babaskin — DevOps &amp; Linux Infrastructure Engineer">
 <meta property="og:description" content="Infrastructure audits, CI/CD, hardening, mail deliverability, monitoring and AI-assisted automation. 15+ years of production Linux.">
@@ -555,7 +557,7 @@ code{ font-family:var(--mono); }
 .repo.is-ai::after{ background:var(--cy); }
 .repos__more{ margin-top:28px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
 
-/* ---------- sub page (projects.html) ---------- */
+/* ---------- repo cards ---------- */
 .page-sub{ padding-top:62px; }
 .sec--top{ padding-top:44px; }
 .sec--os .repos{ grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); }
@@ -694,6 +696,9 @@ body.konami{ animation:konami 2.2s steps(60); }
   .reveal{ opacity:1; transform:none; }
 }
 
+/* ---------- utilities ---------- */
+.is-disabled{ opacity:.45; cursor:not-allowed; pointer-events:none; }
+
 </style>
 
 <script type="application/ld+json">
@@ -713,7 +718,9 @@ body.konami{ animation:konami 2.2s steps(60); }
         "https://www.linkedin.com/in/anton-babaskin/",
         "https://t.me/sen1or_anykey",
         "https://dou.ua/users/appsklaw/"
-      ]
+      ],
+      "address": { "@type": "PostalAddress", "addressCountry": "UA" },
+      "worksFor": { "@id": "https://ant0n.dev/#service" }
     },
     {
       "@type": "ProfessionalService",
@@ -722,7 +729,8 @@ body.konami{ animation:konami 2.2s steps(60); }
       "provider": { "@id": "https://ant0n.dev/#person" },
       "areaServed": "Worldwide",
       "serviceType": ["Infrastructure Audit","DevOps & CI/CD","Linux Security Hardening","Mail Infrastructure & Deliverability","Monitoring & Alerting","Backup & Disaster Recovery","Infrastructure Migration","VPN & Network Engineering","AI-assisted Automation"],
-      "url": "https://ant0n.dev/#services"
+      "url": "https://ant0n.dev/#services",
+      "image": "https://ant0n.dev/assets/img/og.png"
     }
   ]
 }
@@ -818,8 +826,7 @@ body.konami{ animation:konami 2.2s steps(60); }
           <span class="btn__i" aria-hidden="true">▸</span> Request an audit
         </a>
         <a class="btn btn--ghost" href="#plain">What that means →</a>
-        <!-- Replace /babaskin-cv.pdf with your real CV before deploying -->
-        <a class="btn btn--ghost" href="/babaskin-cv.pdf" target="_blank" rel="noopener">Download CV</a>
+        <span class="btn btn--ghost is-disabled" aria-disabled="true" title="CV will be published soon">CV — soon</span>
       </div>
 
       <ul class="hero__stats reveal">
