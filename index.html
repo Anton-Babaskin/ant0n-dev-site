@@ -1,0 +1,2822 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="cyber">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Anton Babaskin — DevOps &amp; Linux Infrastructure Engineer</title>
+<meta name="description" content="DevOps and Linux engineer with 15+ years in production. Infrastructure audits, CI/CD, security hardening, mail deliverability, monitoring, backups and AI-assisted automation. From bare metal to Kubernetes.">
+<meta name="author" content="Anton Babaskin">
+<meta name="theme-color" content="#05080a">
+<meta name="color-scheme" content="dark">
+<link rel="canonical" href="https://ant0n.dev/">
+
+<!-- Open Graph / Twitter -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ant0n.dev/">
+<meta property="og:title" content="Anton Babaskin — DevOps &amp; Linux Infrastructure Engineer">
+<meta property="og:description" content="Infrastructure audits, CI/CD, hardening, mail deliverability, monitoring and AI-assisted automation. 15+ years of production Linux.">
+<meta property="og:image" content="https://ant0n.dev/assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Anton Babaskin — DevOps &amp; Linux Infrastructure Engineer">
+<meta name="twitter:description" content="Infrastructure audits, CI/CD, hardening, mail deliverability, monitoring and AI-assisted automation.">
+<meta name="twitter:image" content="https://ant0n.dev/assets/img/og.png">
+
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTAiIGZpbGw9IiMwNTA4MGEiLz4KICA8cmVjdCB4PSIxLjUiIHk9IjEuNSIgd2lkdGg9IjYxIiBoZWlnaHQ9IjYxIiByeD0iOSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDBmZjljIiBzdHJva2Utb3BhY2l0eT0iLjM1IiBzdHJva2Utd2lkdGg9IjIiLz4KICA8cGF0aCBkPSJNMTMgMjAgTDI1IDMyIEwxMyA0NCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDBmZjljIiBzdHJva2Utd2lkdGg9IjUuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CiAgPHBhdGggZD0iTTMxIDQ1IEg1MSIgc3Ryb2tlPSIjMDBkNGZmIiBzdHJva2Utd2lkdGg9IjUuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+Cjwvc3ZnPgo=" type="image/svg+xml">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700;800&display=swap">
+<style>
+/* ============================================================
+   ant0n.dev — Terminal Cyber
+   Vanilla CSS. No frameworks. No build step required.
+   ============================================================ */
+
+/* ---------- tokens ---------- */
+:root{
+  --bg:        #05080a;
+  --bg-2:      #070c10;
+  --bg-3:      #0a1216;
+  --panel:     rgba(9,17,21,.78);
+  --panel-2:   rgba(10,20,25,.55);
+
+  --acc:       #00ff9c;   /* neon green  */
+  --acc-d:     #06c07a;
+  --cy:        #00d4ff;   /* cyan        */
+  --warn:      #ffb545;
+  --red:       #ff4d6d;
+
+  --fg:        #dbe8e3;
+  --fg-2:      #b2c4be;   /* raised contrast for readability */
+  --mut:       #85978f;
+
+  --line:      rgba(0,255,156,.14);
+  --line-2:    rgba(0,212,255,.16);
+  --line-3:    rgba(255,255,255,.06);
+
+  --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+
+  --wrap: 1200px;
+  --r: 4px;
+
+  --t-fast: .18s cubic-bezier(.4,0,.2,1);
+  --t: .35s cubic-bezier(.16,1,.3,1);
+  --t-slow: .7s cubic-bezier(.16,1,.3,1);
+
+  --glow: 0 0 18px rgba(0,255,156,.22);
+}
+
+/* ---------- reset ---------- */
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--fg);
+  font-family:var(--mono);
+  font-size:15.5px;
+  line-height:1.78;
+  font-weight:400;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+img,svg,canvas{ display:block; max-width:100%; }
+a{ color:inherit; text-decoration:none; }
+button,input{ font:inherit; color:inherit; }
+h1,h2,h3,h4{ margin:0; font-weight:700; line-height:1.15; letter-spacing:-.01em; }
+p{ margin:0 0 1em; }
+ul,ol{ margin:0; padding:0; list-style:none; }
+code{ font-family:var(--mono); }
+::selection{ background:var(--acc); color:#00110a; }
+
+.wrap{ width:min(100% - 40px, var(--wrap)); margin-inline:auto; }
+.c-acc{ color:var(--acc); } .c-cy{ color:var(--cy); } .c-mut{ color:var(--mut); }
+
+.skip-link{
+  position:fixed; top:-100px; left:12px; z-index:200;
+  background:var(--acc); color:#001a10; padding:10px 16px; border-radius:var(--r);
+}
+.skip-link:focus{ top:12px; }
+
+:focus-visible{ outline:2px solid var(--acc); outline-offset:3px; }
+
+/* ---------- scrollbar ---------- */
+::-webkit-scrollbar{ width:10px; height:10px; }
+::-webkit-scrollbar-track{ background:#040709; }
+::-webkit-scrollbar-thumb{ background:#123028; border:2px solid #040709; border-radius:6px; }
+::-webkit-scrollbar-thumb:hover{ background:#1a4a3c; }
+
+/* ============================================================
+   BOOT
+   ============================================================ */
+.boot{
+  position:fixed; inset:0; z-index:300;
+  background:#03060700; background:#030607;
+  display:grid; place-items:center;
+  transition:opacity .5s ease, visibility .5s;
+}
+.boot.is-done{ opacity:0; visibility:hidden; pointer-events:none; }
+.boot__inner{ width:min(100% - 40px, 640px); }
+.boot__logo{
+  color:var(--acc); font-size:clamp(6px,1.7vw,11px); line-height:1.25; margin:0 0 22px;
+  text-shadow:0 0 12px rgba(0,255,156,.45); white-space:pre; overflow:hidden;
+}
+.boot__log{ min-height:190px; font-size:12px; color:var(--fg-2); }
+.boot__log b{ color:var(--acc); font-weight:500; }
+.boot__log i{ color:var(--cy); font-style:normal; }
+.boot__bar{ margin-top:18px; height:2px; background:rgba(0,255,156,.12); overflow:hidden; }
+.boot__bar i{ display:block; height:100%; width:0; background:var(--acc); box-shadow:var(--glow); transition:width .25s linear; }
+.boot__skip{
+  margin-top:16px; background:none; border:1px solid var(--line); color:var(--mut);
+  padding:5px 12px; border-radius:var(--r); cursor:pointer; font-size:11px; transition:var(--t-fast);
+}
+.boot__skip:hover{ color:var(--acc); border-color:var(--acc); }
+
+/* ============================================================
+   FX LAYERS
+   ============================================================ */
+.fx-matrix{
+  position:fixed; inset:0; z-index:0; opacity:.28; pointer-events:none;
+  width:100%; height:100%;
+}
+.fx-grid{
+  position:fixed; inset:0; z-index:0; pointer-events:none;
+  background-image:
+    linear-gradient(rgba(0,255,156,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,156,.045) 1px, transparent 1px);
+  background-size:46px 46px;
+  mask-image:radial-gradient(ellipse 90% 70% at 50% 0%, #000 20%, transparent 75%);
+  -webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 0%, #000 20%, transparent 75%);
+}
+.fx-scan{
+  position:fixed; inset:0; z-index:60; pointer-events:none; opacity:.5;
+  background:repeating-linear-gradient(to bottom, rgba(0,0,0,0) 0 2px, rgba(0,0,0,.22) 2px 4px);
+  mix-blend-mode:multiply;
+}
+.fx-scan::after{
+  content:''; position:absolute; left:0; right:0; height:130px;
+  background:linear-gradient(to bottom, transparent, rgba(0,255,156,.05), transparent);
+  animation:sweep 7.5s linear infinite;
+}
+@keyframes sweep{ 0%{ top:-140px } 100%{ top:100% } }
+.fx-vignette{
+  position:fixed; inset:0; z-index:59; pointer-events:none;
+  background:radial-gradient(ellipse at center, transparent 45%, rgba(0,0,0,.55) 100%);
+}
+.fx-spot{
+  position:fixed; z-index:1; pointer-events:none; width:520px; height:520px; left:0; top:0;
+  margin:-260px 0 0 -260px; border-radius:50%;
+  background:radial-gradient(circle, rgba(0,255,156,.07), transparent 62%);
+  transition:transform .18s ease-out; will-change:transform;
+}
+.scroll-progress{
+  position:fixed; top:0; left:0; height:2px; width:0; z-index:120;
+  background:linear-gradient(90deg,var(--acc),var(--cy));
+  box-shadow:0 0 12px rgba(0,255,156,.6);
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.hdr{
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  border-bottom:1px solid transparent;
+  transition:background var(--t), border-color var(--t), backdrop-filter var(--t);
+}
+.hdr.is-stuck{
+  background:rgba(4,8,10,.82);
+  backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+  border-bottom-color:var(--line);
+}
+.hdr__in{ display:flex; align-items:center; gap:20px; height:62px; }
+.brand{ display:flex; align-items:center; gap:9px; font-weight:700; font-size:13.5px; letter-spacing:-.02em; flex:0 0 auto; }
+.brand__dot{ width:8px; height:8px; border-radius:50%; background:var(--acc); box-shadow:0 0 10px var(--acc); animation:blink 2.4s infinite; }
+.brand__txt{ color:var(--acc); }
+.brand__sep{ color:var(--fg-2); }
+.brand__path{ color:var(--cy); }
+.brand__cur{ color:var(--fg); margin-left:2px; }
+@keyframes blink{ 0%,92%,100%{ opacity:1 } 95%{ opacity:.25 } }
+
+.nav{ display:flex; gap:2px; margin-left:auto; }
+.nav a{
+  position:relative; padding:7px 11px; font-size:12.5px; color:var(--fg-2);
+  border-radius:var(--r); transition:var(--t-fast);
+}
+.nav a:hover{ color:var(--acc); background:rgba(0,255,156,.06); }
+.nav a.is-active{ color:var(--acc); }
+.nav a.is-active::after{
+  content:''; position:absolute; left:11px; right:11px; bottom:2px; height:1px;
+  background:var(--acc); box-shadow:0 0 8px var(--acc);
+}
+
+.hdr__right{ display:flex; align-items:center; gap:10px; flex:0 0 auto; }
+.kbd-hint{
+  display:flex; align-items:center; gap:3px; background:rgba(255,255,255,.03);
+  border:1px solid var(--line-3); color:var(--mut); padding:4px 8px;
+  border-radius:var(--r); font-size:11px; cursor:pointer; transition:var(--t-fast);
+}
+.kbd-hint:hover{ color:var(--acc); border-color:var(--line); }
+
+.burger{ display:none; width:38px; height:32px; background:none; border:1px solid var(--line-3); border-radius:var(--r); cursor:pointer; padding:8px 9px; }
+.burger span{ display:block; height:1.5px; background:var(--acc); margin:0 0 5px; transition:var(--t); }
+.burger span:last-child{ margin:0; }
+.burger[aria-expanded="true"] span:nth-child(1){ transform:translateY(6.5px) rotate(45deg); }
+.burger[aria-expanded="true"] span:nth-child(2){ opacity:0; }
+.burger[aria-expanded="true"] span:nth-child(3){ transform:translateY(-6.5px) rotate(-45deg); }
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn{
+  display:inline-flex; align-items:center; gap:8px; justify-content:center;
+  padding:11px 20px; border:1px solid var(--line); border-radius:var(--r);
+  font-size:13px; font-weight:500; cursor:pointer; position:relative; overflow:hidden;
+  transition:var(--t-fast); background:transparent; color:var(--fg);
+}
+.btn::after{
+  content:''; position:absolute; inset:0; transform:translateX(-101%);
+  background:linear-gradient(90deg, transparent, rgba(0,255,156,.16), transparent);
+  transition:transform .55s ease;
+}
+.btn:hover::after{ transform:translateX(101%); }
+.btn--acc{ background:rgba(0,255,156,.1); border-color:var(--acc); color:var(--acc); }
+.btn--acc:hover{ background:rgba(0,255,156,.18); box-shadow:var(--glow); }
+.btn--ghost:hover{ border-color:var(--cy); color:var(--cy); box-shadow:0 0 16px rgba(0,212,255,.16); }
+.btn--sm{ padding:7px 13px; font-size:12px; }
+.btn--lg{ padding:15px 30px; font-size:14px; }
+.btn__i{ font-size:10px; }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{ position:relative; z-index:2; padding:130px 0 70px; min-height:100svh; display:flex; align-items:center; }
+.hero__grid{ display:grid; grid-template-columns:1.05fr .95fr; gap:52px; align-items:center; }
+/* grid items default to min-width:auto — without this a long terminal line
+   stretches the whole column and pushes the layout past the viewport */
+.hero__left,.hero__right{ min-width:0; }
+
+.hero__status{
+  display:inline-flex; align-items:center; gap:9px; font-size:11.5px; letter-spacing:.06em;
+  color:var(--fg-2); border:1px solid var(--line); border-radius:100px;
+  padding:5px 13px; margin-bottom:22px; background:rgba(0,255,156,.04);
+}
+.hero__status b{ color:var(--acc); font-weight:500; }
+.pulse{ width:7px; height:7px; border-radius:50%; background:var(--acc); position:relative; }
+.pulse::after{ content:''; position:absolute; inset:-4px; border-radius:50%; border:1px solid var(--acc); animation:ping 1.9s ease-out infinite; }
+.pulse--sm{ width:6px; height:6px; display:inline-block; vertical-align:middle; }
+@keyframes ping{ 0%{ transform:scale(.6); opacity:1 } 100%{ transform:scale(1.7); opacity:0 } }
+
+.hero__prompt{ font-size:13px; color:var(--fg-2); margin-bottom:8px; }
+.hero__name{
+  font-size:clamp(34px, 6.4vw, 78px); font-weight:800; letter-spacing:-.045em;
+  color:#eaf7f2; margin-bottom:12px; text-shadow:0 0 36px rgba(0,255,156,.16);
+}
+.hero__role{ font-size:clamp(15px,2.1vw,21px); color:var(--acc); min-height:1.7em; margin-bottom:18px; font-weight:500; }
+.caret{ display:inline-block; width:9px; height:1.05em; background:var(--acc); vertical-align:-2px; margin-left:3px; animation:cur 1s steps(2) infinite; }
+@keyframes cur{ 0%,50%{ opacity:1 } 51%,100%{ opacity:0 } }
+
+.hero__lead{ color:var(--fg-2); max-width:60ch; font-size:14.8px; line-height:1.8; margin-bottom:26px; }
+.hero__lead b{ color:#eaf7f2; font-weight:700; display:block; margin-bottom:6px; font-size:15.5px; }
+.hero__cta{ display:flex; flex-wrap:wrap; gap:11px; margin-bottom:34px; }
+
+.hero__stats{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line-3); border:1px solid var(--line-3); }
+.hero__stats li{ background:var(--bg-2); padding:14px 12px; }
+.hero__stats b{ display:block; font-size:22px; color:var(--acc); font-weight:700; letter-spacing:-.03em; }
+.hero__stats span{ font-size:10.5px; color:var(--mut); letter-spacing:.03em; }
+
+/* glitch */
+.glitch{ position:relative; }
+.glitch::before,.glitch::after{
+  content:attr(data-text); position:absolute; inset:0; overflow:hidden; pointer-events:none;
+}
+.glitch::before{ color:var(--cy); animation:gl1 4.6s infinite steps(1); clip-path:inset(0 0 62% 0); }
+.glitch::after{ color:var(--red); animation:gl2 5.9s infinite steps(1); clip-path:inset(58% 0 0 0); }
+@keyframes gl1{
+  0%,92%,100%{ transform:none; opacity:0 }
+  93%{ transform:translate(-3px,-1px); opacity:.85 }
+  95%{ transform:translate(3px,1px); opacity:.7 }
+  97%{ transform:translate(-2px,0); opacity:.55 }
+}
+@keyframes gl2{
+  0%,90%,100%{ transform:none; opacity:0 }
+  91%{ transform:translate(3px,1px); opacity:.7 }
+  94%{ transform:translate(-3px,-1px); opacity:.55 }
+  96%{ transform:translate(2px,0); opacity:.4 }
+}
+
+/* terminal card */
+.term{
+  border:1px solid var(--line); border-radius:6px; background:var(--panel);
+  backdrop-filter:blur(9px); -webkit-backdrop-filter:blur(9px);
+  box-shadow:0 24px 70px -30px rgba(0,0,0,.9), inset 0 1px 0 rgba(255,255,255,.03);
+  overflow:hidden; min-width:0; max-width:100%;
+}
+.term__bar{
+  display:flex; align-items:center; gap:12px; padding:9px 13px;
+  border-bottom:1px solid var(--line); background:rgba(0,0,0,.32);
+}
+.term__dots{ display:flex; gap:6px; }
+.term__dots i{ width:9px; height:9px; border-radius:50%; background:#2b3a35; }
+.term__dots i:nth-child(1){ background:#ff5f57; } .term__dots i:nth-child(2){ background:#febc2e; } .term__dots i:nth-child(3){ background:#28c840; }
+.term__title{ font-size:11px; color:var(--mut); flex:1; text-align:center; }
+.term__clock{ font-size:11px; color:var(--acc); }
+.term__body{
+  height:340px; overflow-y:auto; padding:14px 15px; font-size:12.3px; line-height:1.65;
+  scrollbar-width:thin;
+}
+.term__body{ overflow-x:auto; }
+.term__body p{ margin:0; white-space:pre-wrap; word-break:break-word; }
+.term__body p.l-nowrap{ white-space:pre; word-break:normal; }
+.term__body .l-cmd{ color:var(--fg); }
+.term__body .l-ok{ color:var(--acc); }
+.term__body .l-cy{ color:var(--cy); }
+.term__body .l-mut{ color:var(--mut); }
+.term__body .l-warn{ color:var(--warn); }
+.term__body .l-err{ color:var(--red); }
+.term__input{ display:flex; align-items:center; gap:8px; padding:10px 14px; border-top:1px solid var(--line); background:rgba(0,0,0,.24); }
+.term__ps1{ font-size:12px; white-space:nowrap; }
+.term__input input{ flex:1; background:none; border:0; outline:none; font-size:12.3px; color:var(--fg); min-width:0; }
+.term__input input::placeholder{ color:#3f4f4a; }
+.term__chips{
+  display:flex; flex-wrap:wrap; align-items:center; justify-content:center;
+  gap:6px; margin-top:12px;
+}
+.term__chips-l{ font-size:10.5px; color:var(--mut); letter-spacing:.06em; margin-right:2px; }
+.term__chips button{
+  font-family:var(--mono); font-size:11.5px; line-height:1;
+  color:var(--fg-2); background:rgba(255,255,255,.03);
+  border:1px solid var(--line-3); border-radius:100px; padding:6px 12px;
+  cursor:pointer; transition:var(--t-fast); white-space:nowrap;
+}
+.term__chips button::before{ content:'$ '; color:var(--mut); }
+.term__chips button:hover{
+  color:var(--acc); border-color:var(--acc); background:rgba(0,255,156,.09);
+  transform:translateY(-1px);
+}
+.term__chips button.is-fun:hover{ color:var(--cy); border-color:var(--cy); background:rgba(0,212,255,.09); }
+.term__chips button.is-danger:hover{ color:var(--red); border-color:var(--red); background:rgba(255,77,109,.09); }
+
+.term__hint{ margin-top:11px; font-size:11.5px; color:var(--mut); text-align:center; line-height:1.7; }
+.term__hint code{ color:var(--acc); }
+.term__hint b{ color:var(--fg-2); font-weight:500; }
+
+.hero__scroll{ position:absolute; bottom:22px; left:50%; transform:translateX(-50%); width:22px; height:34px; border:1px solid var(--line); border-radius:12px; }
+.hero__scroll span{ position:absolute; left:50%; top:7px; width:3px; height:6px; margin-left:-1.5px; background:var(--acc); border-radius:2px; animation:mouse 1.8s ease-in-out infinite; }
+@keyframes mouse{ 0%{ transform:translateY(0); opacity:1 } 70%{ transform:translateY(13px); opacity:0 } 100%{ opacity:0 } }
+
+/* ============================================================
+   TICKER
+   ============================================================ */
+.ticker{
+  position:relative; z-index:2; border-top:1px solid var(--line-3); border-bottom:1px solid var(--line-3);
+  background:rgba(0,255,156,.025); overflow:hidden; padding:11px 0;
+  mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+}
+.ticker__row{ display:flex; gap:0; width:max-content; animation:slide 46s linear infinite; }
+.ticker__row span{ font-size:12px; color:var(--fg-2); padding:0 20px; white-space:nowrap; }
+.ticker__row span::after{ content:'·'; color:var(--acc); margin-left:20px; }
+.ticker:hover .ticker__row{ animation-play-state:paused; }
+@keyframes slide{ from{ transform:translateX(0) } to{ transform:translateX(-50%) } }
+
+/* ============================================================
+   SECTIONS
+   ============================================================ */
+.sec{ position:relative; z-index:2; padding:92px 0; }
+.sec--alt{ background:linear-gradient(180deg, rgba(0,212,255,.022), rgba(0,255,156,.018)); border-block:1px solid var(--line-3); }
+.sec__head{ margin-bottom:44px; max-width:78ch; }
+.sec__num{ font-size:11px; color:var(--cy); letter-spacing:.22em; }
+.sec__title{ font-size:clamp(21px,3.3vw,33px); margin:8px 0 12px; color:#e6f5ef; letter-spacing:-.03em; }
+.sec__sub{ color:var(--fg-2); font-size:14.4px; line-height:1.8; margin:0; }
+
+/* ---------- service cards ---------- */
+.cards{ display:grid; grid-template-columns:repeat(auto-fit,minmax(330px,1fr)); gap:18px; }
+.card{
+  position:relative; padding:24px 22px 22px; border:1px solid var(--line-3); border-radius:6px;
+  background:var(--panel-2); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+  transition:transform var(--t), border-color var(--t), box-shadow var(--t), background var(--t);
+  overflow:hidden;
+}
+.card::before{
+  content:''; position:absolute; inset:0; opacity:0; transition:opacity var(--t);
+  background:radial-gradient(600px circle at var(--mx,50%) var(--my,0%), rgba(0,255,156,.075), transparent 42%);
+  pointer-events:none;
+}
+.card:hover{ transform:translateY(-4px); border-color:var(--line); box-shadow:0 22px 50px -28px rgba(0,255,156,.35); }
+.card:hover::before{ opacity:1; }
+.card__top{ display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+.card__id{ font-size:11px; color:var(--cy); letter-spacing:.16em; }
+.card__tag{ font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--mut); border:1px solid var(--line-3); padding:2px 8px; border-radius:100px; }
+.tag--acc{ color:var(--acc); border-color:rgba(0,255,156,.3); background:rgba(0,255,156,.07); }
+.tag--red{ color:var(--red); border-color:rgba(255,77,109,.3); background:rgba(255,77,109,.06); }
+.card h3{ font-size:18px; margin-bottom:12px; color:#e9f7f1; }
+.card p{ font-size:13.6px; line-height:1.75; color:var(--fg-2); }
+.card__plain{
+  border-left:2px solid var(--acc); background:rgba(0,255,156,.05);
+  padding:10px 13px; border-radius:0 var(--r) var(--r) 0; margin-bottom:12px;
+  color:#e2f2ec !important; font-size:13.4px !important;
+}
+.card__plain b{ color:var(--acc); font-weight:700; }
+.card__list{ margin:14px 0; display:grid; gap:7px; }
+.card__list li{ font-size:12.9px; color:var(--fg-2); padding-left:17px; position:relative; }
+.card__list li::before{ content:'▸'; position:absolute; left:0; color:var(--acc); font-size:9px; top:.4em; }
+.card__out{ margin:0; padding-top:13px; border-top:1px dashed var(--line-3); font-size:11.8px; color:var(--mut); }
+.card__out b{ color:var(--acc); font-weight:500; }
+.card--hot{ border-color:rgba(255,77,109,.22); }
+.card--hot:hover{ box-shadow:0 22px 50px -28px rgba(255,77,109,.4); border-color:rgba(255,77,109,.45); }
+
+/* ---------- plain words (non-technical layer) ---------- */
+.plain{ display:grid; grid-template-columns:repeat(auto-fit,minmax(268px,1fr)); gap:16px; margin-bottom:28px; }
+.plain__card{
+  position:relative; padding:24px 22px 20px; border:1px solid var(--line-3); border-radius:6px;
+  background:linear-gradient(180deg, rgba(0,255,156,.05), rgba(4,10,12,.5));
+  transition:var(--t);
+}
+.plain__card:hover{ border-color:var(--line); transform:translateY(-3px); box-shadow:0 20px 44px -28px rgba(0,255,156,.35); }
+.plain__i{
+  position:absolute; top:14px; right:16px; font-size:26px; font-weight:800;
+  color:rgba(0,255,156,.13); letter-spacing:-.04em; line-height:1;
+}
+.plain__card h3{ font-size:17px; color:var(--acc); margin-bottom:10px; padding-right:34px; }
+.plain__card p{ font-size:14px; line-height:1.8; color:var(--fg-2); margin:0; }
+
+/* ---------- at a glance (recruiter-friendly) ---------- */
+.glance{ border:1px solid var(--line); border-radius:6px; background:rgba(0,0,0,.32); padding:22px 24px; }
+.glance__h{
+  font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:var(--cy);
+  margin-bottom:16px; padding-bottom:12px; border-bottom:1px dashed var(--line-3);
+}
+.glance__grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(268px,1fr)); gap:14px 32px; margin:0; }
+.glance__grid > div{ display:flex; gap:12px; align-items:baseline; flex-wrap:wrap; }
+.glance__grid dt{ font-size:12px; color:var(--mut); min-width:118px; letter-spacing:.04em; }
+.glance__grid dd{ margin:0; font-size:13.6px; color:#e4f2ec; flex:1; }
+
+/* ---------- process ---------- */
+.steps{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:0; border:1px solid var(--line-3); }
+.step{ position:relative; padding:26px 22px; border-right:1px solid var(--line-3); background:rgba(5,10,12,.4); transition:background var(--t); }
+.step:last-child{ border-right:0; }
+.step:hover{ background:rgba(0,255,156,.045); }
+.step__n{ font-size:38px; font-weight:800; color:rgba(0,255,156,.14); letter-spacing:-.05em; display:block; line-height:1; margin-bottom:10px; }
+.step h3{ font-size:16px; margin-bottom:9px; color:#e6f5ef; display:flex; align-items:baseline; gap:9px; flex-wrap:wrap; }
+.step__t{ font-size:10.5px; color:var(--cy); font-weight:400; letter-spacing:.08em; border:1px solid var(--line-2); padding:1px 7px; border-radius:100px; }
+.step p{ font-size:12.6px; color:var(--fg-2); margin:0; }
+
+/* ---------- ai ---------- */
+.ai{ display:grid; grid-template-columns:1fr 1fr; gap:20px; align-items:start; }
+.ai__panel{ border:1px solid var(--line); border-radius:6px; padding:16px 18px; background:rgba(0,0,0,.35); margin-bottom:18px; }
+.ai__line{ font-size:13.5px; margin:0 0 8px; color:#e6f5ef; }
+.ai__line .ok{ color:var(--acc); }
+.ai__meta{ font-size:12px; color:var(--mut); margin:0 0 3px; padding-left:14px; }
+.ai__meta .ok{ color:var(--acc); }
+.ai__text{ font-size:13.4px; color:var(--fg-2); }
+.ai__text a{ color:var(--acc); border-bottom:1px dashed rgba(0,255,156,.4); }
+.ai__text a:hover{ color:var(--cy); border-color:var(--cy); }
+.ai__grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.ai__card{ border:1px solid var(--line-3); border-radius:6px; padding:16px 16px 4px; background:var(--panel-2); transition:var(--t); }
+.ai__card:hover{ border-color:var(--line); transform:translateY(-3px); }
+.ai__card h3{ font-size:14px; color:var(--acc); margin-bottom:7px; }
+.ai__card p{ font-size:12.2px; color:var(--fg-2); }
+
+/* ---------- stack ---------- */
+.stack{ border:1px solid var(--line-3); border-radius:6px; overflow:hidden; background:rgba(4,9,11,.5); }
+.stack__tabs{ display:flex; flex-wrap:wrap; gap:0; border-bottom:1px solid var(--line-3); background:rgba(0,0,0,.3); }
+.stack__tabs button{
+  background:none; border:0; border-right:1px solid var(--line-3); padding:12px 17px;
+  font-size:12px; color:var(--fg-2); cursor:pointer; transition:var(--t-fast); position:relative;
+}
+.stack__tabs button:hover{ color:var(--acc); background:rgba(0,255,156,.05); }
+.stack__tabs button[aria-selected="true"]{ color:var(--acc); background:rgba(0,255,156,.09); }
+.stack__tabs button[aria-selected="true"]::after{ content:''; position:absolute; left:0; right:0; bottom:-1px; height:2px; background:var(--acc); box-shadow:var(--glow); }
+.stack__tabs button .tabtag{
+  font-style:normal; font-size:9px; letter-spacing:.1em; text-transform:uppercase;
+  margin-left:7px; padding:1px 6px; border-radius:100px; vertical-align:1px;
+  color:var(--cy); border:1px solid var(--line-2); background:rgba(0,212,255,.07);
+}
+.stack__panel{ padding:24px 22px; }
+.stack__why{
+  font-size:14.2px; line-height:1.8; color:#e2f2ec; max-width:82ch;
+  border-left:2px solid var(--acc); background:rgba(0,255,156,.05);
+  padding:12px 16px; border-radius:0 var(--r) var(--r) 0; margin-bottom:14px;
+}
+.stack__why b{ color:var(--acc); font-weight:700; }
+.stack__lead{ font-size:12.5px; color:var(--mut); margin-bottom:16px; }
+.chips{ display:flex; flex-wrap:wrap; gap:8px; }
+.chip{
+  font-size:12px; color:var(--fg-2); border:1px solid var(--line-3); border-radius:var(--r);
+  padding:6px 12px; background:rgba(255,255,255,.02); transition:var(--t-fast);
+  animation:chipIn .32s both;
+}
+.chip:hover{ color:var(--acc); border-color:var(--acc); background:rgba(0,255,156,.08); transform:translateY(-2px); }
+@keyframes chipIn{ from{ opacity:0; transform:translateY(6px) } to{ opacity:1; transform:none } }
+
+/* ---------- projects ---------- */
+.filters{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:22px; }
+.filters button{
+  background:none; border:1px solid var(--line-3); border-radius:100px; padding:6px 15px;
+  font-size:12px; color:var(--fg-2); cursor:pointer; transition:var(--t-fast);
+}
+.filters button:hover{ color:var(--acc); border-color:var(--line); }
+.filters button.is-on{ color:var(--acc); border-color:var(--acc); background:rgba(0,255,156,.09); }
+
+.repos{ display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:16px; }
+.repo{
+  position:relative; display:flex; flex-direction:column; gap:10px; padding:20px;
+  border:1px solid var(--line-3); border-radius:6px; background:var(--panel-2);
+  transition:var(--t); overflow:hidden;
+}
+.repo::after{
+  content:''; position:absolute; left:0; top:0; bottom:0; width:2px; background:var(--acc);
+  transform:scaleY(0); transform-origin:top; transition:transform var(--t);
+}
+.repo:hover{ transform:translateY(-4px); border-color:var(--line); box-shadow:0 20px 44px -26px rgba(0,255,156,.35); }
+.repo:hover::after{ transform:scaleY(1); }
+.repo__head{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
+.repo__name{ font-size:15px; color:#e9f7f1; font-weight:700; }
+.repo__name::before{ content:'~/'; color:var(--mut); font-weight:400; }
+.repo__lang{ font-size:10.5px; color:var(--cy); border:1px solid var(--line-2); border-radius:100px; padding:1px 8px; white-space:nowrap; }
+.repo__plain{
+  margin:0; font-size:13.2px; line-height:1.7; color:#e2f2ec;
+  border-left:2px solid var(--acc); background:rgba(0,255,156,.05);
+  padding:9px 12px; border-radius:0 var(--r) var(--r) 0;
+}
+.repo.is-ai .repo__plain{ border-left-color:var(--cy); background:rgba(0,212,255,.05); }
+.repo__desc{ font-size:12.8px; line-height:1.72; color:var(--fg-2); margin:0; flex:1; }
+.repos__empty{ color:var(--mut); font-size:13px; grid-column:1/-1; }
+.repos__empty b{ color:var(--acc); }
+.repo__tags{ display:flex; flex-wrap:wrap; gap:6px; }
+.repo__tags span{ font-size:10.5px; color:var(--mut); background:rgba(255,255,255,.03); border:1px solid var(--line-3); padding:2px 7px; border-radius:var(--r); }
+.repo__link{ font-size:11.5px; color:var(--acc); display:inline-flex; align-items:center; gap:6px; margin-top:2px; }
+.repo__link:hover{ color:var(--cy); }
+.repo.is-ai{ border-color:rgba(0,212,255,.22); }
+.repo.is-ai::after{ background:var(--cy); }
+.repos__more{ margin-top:28px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+
+/* ---------- sub page (projects.html) ---------- */
+.page-sub{ padding-top:62px; }
+.sec--top{ padding-top:44px; }
+.sec--os .repos{ grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); }
+.crumb{ font-size:12px; color:var(--mut); margin-bottom:22px; }
+.crumb a{ color:var(--acc); }
+.crumb a:hover{ color:var(--cy); }
+.crumb span{ margin:0 6px; }
+.sec__title--page{ font-size:clamp(30px,5vw,52px); }
+.ftr__link{ color:var(--acc); }
+.ftr__link:hover{ color:var(--cy); }
+
+/* ---------- rules ---------- */
+.rules{ display:grid; gap:1px; background:var(--line-3); border:1px solid var(--line-3); }
+.rule{ background:var(--bg-2); padding:20px 22px; display:grid; grid-template-columns:64px 1fr; gap:6px 18px; align-items:baseline; transition:background var(--t); }
+.rule:hover{ background:rgba(0,255,156,.05); }
+.rule span{ color:var(--cy); font-size:12px; letter-spacing:.1em; grid-row:span 2; }
+.rule b{ font-size:16px; color:#e9f7f1; }
+.rule p{ margin:0; font-size:12.6px; color:var(--fg-2); grid-column:2; }
+
+/* ---------- contact ---------- */
+.sec--contact{ padding-bottom:70px; }
+.contact{ display:grid; grid-template-columns:1.15fr .85fr; gap:20px; align-items:start; }
+.contact__box{ border:1px solid var(--line); border-radius:6px; background:var(--panel); padding:18px 20px; }
+.contact__ps1{ font-size:12.5px; margin-bottom:10px; }
+.contact__json{ margin:0; font-size:12.4px; overflow-x:auto; color:var(--fg-2); }
+.contact__json .k{ color:var(--cy); }
+.contact__json .s{ color:var(--acc); }
+.contact__links{ display:grid; gap:1px; background:var(--line-3); border:1px solid var(--line-3); }
+.link{ display:flex; align-items:center; gap:12px; padding:13px 16px; background:var(--bg-2); transition:var(--t-fast); width:100%; text-align:left; border:0; cursor:pointer; }
+.link:hover{ background:rgba(0,255,156,.07); }
+.link__k{ font-size:11px; color:var(--mut); width:74px; flex:0 0 auto; letter-spacing:.08em; }
+.link__v{ font-size:13px; color:var(--fg); flex:1; word-break:break-all; }
+.link__a{ font-size:11px; color:var(--acc); flex:0 0 auto; }
+
+.cta{ margin-top:34px; text-align:center; border:1px dashed var(--line); border-radius:6px; padding:32px 20px; background:rgba(0,255,156,.03); }
+.cta p{ font-size:15px; color:var(--fg); margin-bottom:18px; }
+
+/* ---------- footer ---------- */
+.ftr{ position:relative; z-index:2; border-top:1px solid var(--line-3); padding:22px 0; background:rgba(3,6,7,.6); }
+.ftr__in{ display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap; }
+.ftr p{ margin:0; font-size:11.5px; color:var(--mut); }
+.ftr__r{ color:var(--fg-2); }
+#uptime,#kyiv{ color:var(--acc); }
+
+/* ---------- command palette ---------- */
+.palette{ position:fixed; inset:0; z-index:200; background:rgba(0,0,0,.72); backdrop-filter:blur(5px); display:grid; place-items:start center; padding-top:14vh; }
+.palette[hidden]{ display:none; }
+.palette__box{ width:min(100% - 32px, 580px); border:1px solid var(--line); border-radius:6px; background:rgba(6,12,15,.97); box-shadow:0 40px 90px -30px rgba(0,0,0,.95); overflow:hidden; animation:pop .18s ease; }
+@keyframes pop{ from{ opacity:0; transform:translateY(-10px) scale(.98) } to{ opacity:1; transform:none } }
+.palette__in{ display:flex; align-items:center; gap:10px; padding:14px 16px; border-bottom:1px solid var(--line-3); }
+.palette__in input{ flex:1; background:none; border:0; outline:none; font-size:14px; }
+.palette__in kbd{ font-size:10px; color:var(--mut); border:1px solid var(--line-3); border-radius:3px; padding:2px 6px; }
+.palette__list{ max-height:330px; overflow-y:auto; }
+.palette__list li{ padding:11px 16px; font-size:13px; color:var(--fg-2); cursor:pointer; display:flex; align-items:center; gap:11px; }
+.palette__list li .pk{ font-size:10px; color:var(--cy); border:1px solid var(--line-2); border-radius:3px; padding:1px 6px; }
+.palette__list li.is-sel,.palette__list li:hover{ background:rgba(0,255,156,.1); color:var(--acc); }
+
+/* ---------- toast ---------- */
+.toast{
+  position:fixed; bottom:26px; left:50%; transform:translate(-50%,20px); z-index:210;
+  background:rgba(6,14,17,.96); border:1px solid var(--acc); color:var(--acc);
+  padding:11px 20px; border-radius:var(--r); font-size:12.5px; box-shadow:var(--glow);
+  opacity:0; pointer-events:none; transition:var(--t);
+}
+.toast.is-on{ opacity:1; transform:translate(-50%,0); }
+
+/* ---------- konami easter egg ---------- */
+body.konami{ animation:konami 2.2s steps(60); }
+@keyframes konami{
+  0%,100%{ filter:none; }
+  10%{ filter:hue-rotate(90deg) saturate(1.6); transform:translateX(2px); }
+  20%{ filter:hue-rotate(-60deg) invert(.06); transform:translateX(-2px); }
+  35%{ filter:hue-rotate(140deg) saturate(2); transform:translateX(1px); }
+  50%{ filter:none; transform:none; }
+  65%{ filter:hue-rotate(-120deg) saturate(1.4); transform:translateX(-1px); }
+  80%{ filter:hue-rotate(40deg); }
+}
+
+/* ---------- reveal ---------- */
+.reveal{ opacity:0; transform:translateY(22px); transition:opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
+.reveal.is-in{ opacity:1; transform:none; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width:1040px){
+  .hero__grid{ grid-template-columns:1fr; gap:40px; }
+  .ai{ grid-template-columns:1fr; }
+  .contact{ grid-template-columns:1fr; }
+}
+@media (max-width:1024px){
+  .nav{
+    position:fixed; inset:62px 0 auto; flex-direction:column; gap:0; padding:10px 20px 22px;
+    background:rgba(4,8,10,.97); backdrop-filter:blur(16px); border-bottom:1px solid var(--line);
+    transform:translateY(-120%); transition:transform var(--t); margin:0 0 0 auto;
+  }
+  .nav.is-open{ transform:none; }
+  .nav a{ padding:13px 4px; font-size:14px; border-bottom:1px solid var(--line-3); border-radius:0; }
+  .nav a.is-active::after{ display:none; }
+  .burger{ display:block; }
+  .kbd-hint{ display:none; }
+}
+@media (max-width:860px){
+  .steps{ grid-template-columns:1fr; }
+  .step{ border-right:0; border-bottom:1px solid var(--line-3); }
+  .ai__grid{ grid-template-columns:1fr; }
+}
+@media (max-width:620px){
+  body{ font-size:14px; }
+  .sec{ padding:66px 0; }
+  .hero{ padding:104px 0 56px; }
+  .hero__stats{ grid-template-columns:repeat(2,1fr); }
+  .hero__cta .btn{ flex:1 1 100%; }
+  .term__body{ height:270px; }
+  .rule{ grid-template-columns:1fr; }
+  .rule span{ grid-row:auto; }
+  .rule p{ grid-column:1; }
+  .fx-matrix{ opacity:.16; }
+  .repos{ grid-template-columns:1fr; }
+  .cards{ grid-template-columns:1fr; }
+  .ftr__in{ justify-content:center; text-align:center; }
+}
+
+/* ============================================================
+   REDUCED MOTION / PRINT
+   ============================================================ */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important; }
+  .reveal{ opacity:1; transform:none; }
+  .fx-matrix,.fx-scan{ display:none; }
+  .fx-spot{ display:none; }
+}
+@media print{
+  .fx-matrix,.fx-grid,.fx-scan,.fx-vignette,.fx-spot,.hdr,.boot,.palette,.ticker,.hero__scroll{ display:none !important; }
+  body{ background:#fff; color:#111; }
+  .reveal{ opacity:1; transform:none; }
+}
+
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://ant0n.dev/#person",
+      "name": "Anton Babaskin",
+      "jobTitle": "DevOps & Linux Infrastructure Engineer",
+      "email": "mailto:me@ant0n.dev",
+      "url": "https://ant0n.dev/",
+      "knowsAbout": ["DevOps","CI/CD","Linux","Infrastructure Audit","Postfix","Dovecot","Proxmox VE","Docker","Kubernetes","Ansible","Terraform","WireGuard","Prometheus","Grafana","Security Hardening","AI Automation"],
+      "sameAs": [
+        "https://github.com/Anton-Babaskin",
+        "https://www.linkedin.com/in/anton-babaskin/",
+        "https://t.me/sen1or_anykey",
+        "https://dou.ua/users/appsklaw/"
+      ]
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://ant0n.dev/#service",
+      "name": "Babaskin Infrastructure Engineering",
+      "provider": { "@id": "https://ant0n.dev/#person" },
+      "areaServed": "Worldwide",
+      "serviceType": ["Infrastructure Audit","DevOps & CI/CD","Linux Security Hardening","Mail Infrastructure & Deliverability","Monitoring & Alerting","Backup & Disaster Recovery","Infrastructure Migration","VPN & Network Engineering","AI-assisted Automation"],
+      "url": "https://ant0n.dev/#services"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- ══════════════ BOOT SEQUENCE ══════════════ -->
+<div id="boot" class="boot" aria-hidden="true">
+  <div class="boot__inner">
+    <pre class="boot__logo">  _           _               _    _
+ | |__   __ _| |__   __ _ ___| | _(_)_ __
+ | '_ \ / _` | '_ \ / _` / __| |/ / | '_ \
+ | |_) | (_| | |_) | (_| \__ \   &lt;| | | | |
+ |_.__/ \__,_|_.__/ \__,_|___/_|\_\_|_| |_|</pre>
+    <div class="boot__log" id="bootLog"></div>
+    <div class="boot__bar"><i></i></div>
+    <button class="boot__skip" id="bootSkip" type="button">skip [esc]</button>
+  </div>
+</div>
+
+<!-- ══════════════ FX LAYERS ══════════════ -->
+<canvas id="matrix" class="fx-matrix" aria-hidden="true"></canvas>
+<div class="fx-grid" aria-hidden="true"></div>
+<div class="fx-scan" aria-hidden="true"></div>
+<div class="fx-vignette" aria-hidden="true"></div>
+<div class="fx-spot" id="spot" aria-hidden="true"></div>
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ══════════════ HEADER ══════════════ -->
+<header class="hdr" id="hdr">
+  <div class="wrap hdr__in">
+    <a class="brand" href="#top" aria-label="Anton Babaskin — home">
+      <span class="brand__dot" aria-hidden="true"></span>
+      <span class="brand__txt">anton@infra<span class="brand__sep">:</span><span class="brand__path">~</span><span class="brand__cur">$</span></span>
+    </a>
+
+    <nav class="nav" id="nav" aria-label="Primary">
+      <a href="#plain">what_i_do</a>
+      <a href="#services">services</a>
+      <a href="#process">process</a>
+      <a href="#ai">ai_ops</a>
+      <a href="#stack">stack</a>
+      <a href="#principles">principles</a>
+      <a href="#contact">contact</a>
+      <a href="#projects">projects</a>
+    </nav>
+
+    <div class="hdr__right">
+      <button class="kbd-hint" id="paletteBtn" type="button" aria-label="Open command palette">
+        <span>⌘</span>K
+      </button>
+      <a class="btn btn--sm btn--acc" href="#contact">./request-audit</a>
+      <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ══════════════ HERO ══════════════ -->
+<section class="hero" id="top">
+  <div class="wrap hero__grid">
+
+    <div class="hero__left">
+      <div class="hero__status reveal">
+        <span class="pulse" aria-hidden="true"></span>
+        <span>STATUS: <b>available for infrastructure work</b></span>
+      </div>
+
+      <p class="hero__prompt reveal"><span class="c-acc">anton@infra</span>:<span class="c-cy">~</span>$ whoami</p>
+
+      <h1 class="hero__name glitch reveal" data-text="ANTON BABASKIN">ANTON BABASKIN</h1>
+
+      <p class="hero__role reveal">
+        <span class="c-mut">&gt;</span>
+        <span id="typedRole" class="typed"></span><span class="caret" aria-hidden="true"></span>
+      </p>
+
+      <p class="hero__lead reveal">
+        <b>I keep the systems a business runs on online, secure and fast.</b>
+        15+ years of real production infrastructure — servers, email, networks, backups,
+        deployment pipelines. I take environments that are fragile, undocumented or on fire
+        and turn them into something boring, monitored and safe to touch.
+      </p>
+
+      <div class="hero__cta reveal">
+        <a class="btn btn--acc" href="#contact">
+          <span class="btn__i" aria-hidden="true">▸</span> Request an audit
+        </a>
+        <a class="btn btn--ghost" href="#plain">What that means →</a>
+        <!-- Replace /babaskin-cv.pdf with your real CV before deploying -->
+        <a class="btn btn--ghost" href="/babaskin-cv.pdf" target="_blank" rel="noopener">Download CV</a>
+      </div>
+
+      <ul class="hero__stats reveal">
+        <li><b data-count="15" data-suffix="+">0</b><span>years in production</span></li>
+        <li><b data-count="11" data-suffix="+">0</b><span>open-source tools</span></li>
+        <li><b>24/7</b><span>incident response</span></li>
+        <li><b>UA</b><span>remote · worldwide</span></li>
+      </ul>
+    </div>
+
+    <!-- terminal card -->
+    <div class="hero__right reveal">
+      <div class="term" id="termCard">
+        <div class="term__bar">
+          <span class="term__dots"><i></i><i></i><i></i></span>
+          <span class="term__title">anton@infra — bash — 96×28</span>
+          <span class="term__clock" id="clock">--:--:--</span>
+        </div>
+        <div class="term__body" id="termBody" role="log" aria-live="off"></div>
+        <form class="term__input" id="termForm" autocomplete="off">
+          <label for="termCmd" class="term__ps1"><span class="c-acc">anton@infra</span>:<span class="c-cy">~</span>$</label>
+          <input id="termCmd" name="cmd" type="text" spellcheck="false" placeholder="type `help` and press Enter…" aria-label="Terminal command">
+        </form>
+      </div>
+      <div class="term__chips" id="termChips" role="group" aria-label="Run a terminal command">
+        <span class="term__chips-l">click to run →</span>
+        <button type="button" data-cmd="skills">skills</button>
+        <button type="button" data-cmd="services">services</button>
+        <button type="button" data-cmd="hire">hire</button>
+        <button type="button" data-cmd="sl" class="is-fun">sl</button>
+        <button type="button" data-cmd="hack the.planet" class="is-fun">hack</button>
+        <button type="button" data-cmd="fortune" class="is-fun">fortune</button>
+        <button type="button" data-cmd="coffee" class="is-fun">coffee</button>
+        <button type="button" data-cmd="sudo rm -rf /" class="is-danger">sudo rm -rf /</button>
+      </div>
+      <p class="term__hint">
+        this terminal is real — type <code>help</code> for the short list,
+        or <code>commands</code> for <b>all ~40</b>, jokes included.
+      </p>
+    </div>
+
+  </div>
+
+  <a class="hero__scroll" href="#plain" aria-label="Scroll down"><span></span></a>
+</section>
+
+<!-- ══════════════ MARQUEE ══════════════ -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker__row" id="tickerRow"></div>
+</div>
+
+<!-- ══════════════ PLAIN WORDS ══════════════ -->
+<section class="sec" id="plain">
+  <div class="wrap">
+    <header class="sec__head reveal">
+      <span class="sec__num">[01]</span>
+      <h2 class="sec__title">In plain words</h2>
+      <p class="sec__sub">No jargon in this section — this is what the job actually is, why companies pay for it, and what you get.</p>
+    </header>
+
+    <div class="plain">
+      <article class="plain__card reveal">
+        <span class="plain__i" aria-hidden="true">01</span>
+        <h3>What I actually do</h3>
+        <p>Every company runs on computers it does not see: web servers, databases, email, VPNs, backups. I design, build and look after that layer. When it breaks, I fix it. Before it breaks, I find the weak points and remove them.</p>
+      </article>
+
+      <article class="plain__card reveal">
+        <span class="plain__i" aria-hidden="true">02</span>
+        <h3>Who I work with</h3>
+        <p>Businesses that depend on their own infrastructure — hosting and SaaS companies, e-commerce, agencies, and teams that inherited servers nobody understands anymore. Usually I am the person brought in when it has to be right.</p>
+      </article>
+
+      <article class="plain__card reveal">
+        <span class="plain__i" aria-hidden="true">03</span>
+        <h3>What you get</h3>
+        <p>A written report your team can act on and your management can read. Systems that stop waking people up at night. Documentation, so the knowledge is not locked inside one person's head — including mine.</p>
+      </article>
+
+      <article class="plain__card reveal">
+        <span class="plain__i" aria-hidden="true">04</span>
+        <h3>Why it matters</h3>
+        <p>Downtime, lost email and lost data cost money and customer trust. Most of it is preventable, and usually cheaply — if somebody competent looks at the system before the incident rather than after it.</p>
+      </article>
+    </div>
+
+    <!-- at-a-glance for recruiters / non-technical readers -->
+    <div class="glance reveal">
+      <h3 class="glance__h">At a glance</h3>
+      <dl class="glance__grid">
+        <div><dt>Experience</dt><dd>15+ years, Linux &amp; infrastructure</dd></div>
+        <div><dt>Seniority</dt><dd>Senior / Lead engineer &amp; consultant</dd></div>
+        <div><dt>Main areas</dt><dd>DevOps · Infrastructure · Networks · Mail · Security</dd></div>
+        <div><dt>Also strong in</dt><dd>Monitoring, backups &amp; disaster recovery, AI automation</dd></div>
+        <div><dt>Location</dt><dd>Ukraine — remote, worldwide (UTC+3)</dd></div>
+        <div><dt>Languages</dt><dd>Ukrainian · Russian · English</dd></div>
+        <div><dt>Open to</dt><dd>Full-time · Contract · One-off audits</dd></div>
+        <div><dt>Response time</dt><dd>Usually within 24 hours</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ SERVICES ══════════════ -->
+<section class="sec sec--alt" id="services">
+  <div class="wrap">
+    <header class="sec__head reveal">
+      <span class="sec__num">[02]</span>
+      <h2 class="sec__title">$ ls -la /srv/services</h2>
+      <p class="sec__sub">What you can hire me for. Each one has a fixed scope and a written deliverable — every card starts with a plain-language summary, then the technical detail underneath.</p>
+    </header>
+
+    <div class="cards">
+
+      <article class="card reveal">
+        <div class="card__top"><span class="card__id">01</span><span class="card__tag tag--acc">flagship</span></div>
+        <h3>Infrastructure Audit</h3>
+        <p class="card__plain"><b>In plain words:</b> a full health check of your servers. I look at everything, break nothing, and hand you a ranked list of what to fix first.</p>
+        <p>Read-only, non-destructive assessment of servers, network, mail, security posture, backups and monitoring. Findings are ranked critical → high → hygiene, with concrete commands and a remediation roadmap.</p>
+        <ul class="card__list">
+          <li>Host inventory, services, resource and capacity review</li>
+          <li>Security posture: SSH, firewall, users, sudo, CVEs, exposure</li>
+          <li>Backup reality check — does the restore actually work?</li>
+          <li>Single points of failure, bus factor, missing documentation</li>
+        </ul>
+        <p class="card__out"><b>Deliverable:</b> PDF/Markdown report + remediation plan + walkthrough call</p>
+      </article>
+
+      <article class="card reveal">
+        <div class="card__top"><span class="card__id">02</span><span class="card__tag tag--acc">devops</span></div>
+        <h3>DevOps, CI/CD &amp; Automation</h3>
+        <p class="card__plain"><b>In plain words:</b> your developers stop deploying by hand at midnight. Code goes to production automatically, repeatably, and can be rolled back in seconds.</p>
+        <p>Pipelines, infrastructure as code and release process. Everything a machine can do twice, a machine should do — with the whole environment described in a Git repository instead of someone's memory.</p>
+        <ul class="card__list">
+          <li>GitHub Actions / GitLab CI pipelines with real tests and gates</li>
+          <li>Ansible &amp; Terraform — servers described as code, not clicked</li>
+          <li>Blue/green and rolling deploys, automated rollback</li>
+          <li>Dev / staging / production parity and secrets handling</li>
+        </ul>
+        <p class="card__out"><b>Deliverable:</b> working pipelines + IaC repo + release runbook</p>
+      </article>
+
+      <article class="card reveal">
+        <div class="card__top"><span class="card__id">03</span><span class="card__tag">security</span></div>
+        <h3>Hardening &amp; Compliance Baseline</h3>
+        <p class="card__plain"><b>In plain words:</b> making your servers a hard target. Cheap to do now, very expensive to skip.</p>
+        <p>Turning a default install into something that survives the internet. A CIS-style baseline applied carefully, documented and reversible — nothing lands in production without a rollback path.</p>
+        <ul class="card__list">
+          <li>SSH keys-only, jump hosts, least-privilege sudo</li>
+          <li>nftables/iptables, Fail2Ban, brute-force containment</li>
+          <li>TLS everywhere, certificate automation and expiry alerts</li>
+          <li>auditd, log retention, centralized logging</li>
+        </ul>
+        <p class="card__out"><b>Deliverable:</b> hardened baseline + Ansible role + before/after evidence</p>
+      </article>
+
+      <article class="card reveal">
+        <div class="card__top"><span class="card__id">04</span><span class="card__tag">mailops</span></div>
+        <h3>Mail Infrastructure &amp; Deliverability</h3>
+        <p class="card__plain"><b>In plain words:</b> your email reaches the inbox instead of the spam folder — and you stop losing customers you never knew you missed.</p>
+        <p>My deepest specialism: Postfix, Dovecot, rspamd, Mail-in-a-Box. From "our mail lands in spam" to a clean, authenticated, monitored mail platform — including blacklist recovery and queue forensics.</p>
+        <ul class="card__list">
+          <li>SPF / DKIM / DMARC / PTR / MTA-STS done properly</li>
+          <li>Deliverability rescue, RBL delisting, reputation repair</li>
+          <li>Queue, bounce and relay analytics from raw logs</li>
+          <li>Anti-spam tuning without losing legitimate mail</li>
+        </ul>
+        <p class="card__out"><b>Deliverable:</b> working mail platform + monitoring + runbook</p>
+      </article>
+
+      <article class="card reveal">
+        <div class="card__top"><span class="card__id">05</span><span class="card__tag">sre</span></div>
+        <h3>Monitoring &amp; Alerting</h3>
+        <p class="card__plain"><b>In plain words:</b> you find out something is wrong before your customers do — and the alert tells the on-call engineer what to actually do.</p>
+        <p>Dashboards nobody looks at are decoration. I build alerting that fires only when something is genuinely wrong, routes to where you actually read it, and comes with a next step attached.</p>
+        <ul class="card__list">
+          <li>Prometheus, Grafana, Loki, Alertmanager, Zabbix</li>
+          <li>Symptom-based alerts, noise reduction, escalation paths</li>
+          <li>Telegram / Slack notification pipelines with context</li>
+          <li>Synthetic checks for mail, DNS, TLS, VPN and web</li>
+        </ul>
+        <p class="card__out"><b>Deliverable:</b> dashboards, alert rules, on-call runbook</p>
+      </article>
+
+      <article class="card reveal">
+        <div class="card__top"><span class="card__id">06</span><span class="card__tag">resilience</span></div>
+        <h3>Backup &amp; Disaster Recovery</h3>
+        <p class="card__plain"><b>In plain words:</b> if the worst happens, you are back online in hours — with a restore that has been tested, not assumed.</p>
+        <p>A backup you have never restored is a rumour. 3-2-1 strategy, offsite copies, encryption, and — the part everyone skips — scheduled restore drills with measured recovery time.</p>
+        <ul class="card__list">
+          <li>ZFS snapshots, restic/borg, Proxmox Backup Server</li>
+          <li>Immutable / offsite copies, retention policy</li>
+          <li>Documented, timed restore procedure</li>
+          <li>Backup failure alerting — silence is not success</li>
+        </ul>
+        <p class="card__out"><b>Deliverable:</b> DR plan + verified restore + automated alerts</p>
+      </article>
+
+      <article class="card reveal">
+        <div class="card__top"><span class="card__id">07</span><span class="card__tag">platform</span></div>
+        <h3>Migration &amp; Platform Build</h3>
+        <p class="card__plain"><b>In plain words:</b> moving your systems to better or cheaper infrastructure — planned and rehearsed, so customers never notice it happened.</p>
+        <p>Lift an entire environment without downtime drama: bare metal ↔ cloud, hypervisor consolidation, containerization. Rehearsed cutover, rollback ready, DNS TTLs planned days in advance.</p>
+        <ul class="card__list">
+          <li>Proxmox VE on Hetzner/OVH, ZFS RAID, IPMI-less installs</li>
+          <li>Docker / Compose / Kubernetes workload migration</li>
+          <li>Cost review — right-sizing instead of paying for idle capacity</li>
+          <li>Cutover plan, rehearsal and rollback procedure</li>
+        </ul>
+        <p class="card__out"><b>Deliverable:</b> migrated platform + IaC repo + cutover report</p>
+      </article>
+
+      <article class="card reveal">
+        <div class="card__top"><span class="card__id">08</span><span class="card__tag">network</span></div>
+        <h3>Networking, VPN &amp; Secure Access</h3>
+        <p class="card__plain"><b>In plain words:</b> your team and your offices connect to internal systems privately and reliably — and you are told when a tunnel dies.</p>
+        <p>Private, dependable connectivity between people, offices and machines — with health monitoring, so a dead tunnel does not stay dead silently.</p>
+        <ul class="card__list">
+          <li>WireGuard, site-to-site and road-warrior topologies</li>
+          <li>Xray / VLESS + REALITY for censored networks</li>
+          <li>Routing, VLANs, split DNS, NAT and firewall design</li>
+          <li>Nginx / HAProxy edge, TLS termination, rate limiting</li>
+        </ul>
+        <p class="card__out"><b>Deliverable:</b> documented topology + configs + tunnel monitoring</p>
+      </article>
+
+      <article class="card card--hot reveal">
+        <div class="card__top"><span class="card__id">09</span><span class="card__tag tag--red">emergency</span></div>
+        <h3>Firefighting &amp; Root Cause</h3>
+        <p class="card__plain"><b>In plain words:</b> something is down right now, and you need someone who has seen it before. Stabilise first, explain second, prevent third.</p>
+        <p>Production is down, the disk is full, mail is blacklisted, the previous admin is gone and nobody has the password. I have been there many times.</p>
+        <ul class="card__list">
+          <li>Rapid triage and stabilization</li>
+          <li>Log-driven root cause analysis — no guessing</li>
+          <li>Recovery of inherited / undocumented systems</li>
+          <li>Written post-mortem and prevention plan</li>
+        </ul>
+        <p class="card__out"><b>Deliverable:</b> stable system + post-mortem + prevention backlog</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ PROCESS ══════════════ -->
+<section class="sec" id="process">
+  <div class="wrap">
+    <header class="sec__head reveal">
+      <span class="sec__num">[03]</span>
+      <h2 class="sec__title">$ cat /etc/audit/workflow</h2>
+      <p class="sec__sub">How an engagement actually runs. Predictable, read-only first, and nothing is changed on your systems without your approval.</p>
+    </header>
+
+    <ol class="steps">
+      <li class="step reveal">
+        <span class="step__n">01</span>
+        <h3>Recon <span class="step__t">day 0–1</span></h3>
+        <p>Scoping call, read-only access, inventory collection. I map what exists before forming any opinion — hosts, services, data flows, dependencies, who owns what.</p>
+      </li>
+      <li class="step reveal">
+        <span class="step__n">02</span>
+        <h3>Analysis <span class="step__t">day 1–4</span></h3>
+        <p>Automated diagnostics plus manual review: logs, configs, security posture, backups, monitoring gaps, capacity. Findings are ranked by real business risk, not by scanner severity.</p>
+      </li>
+      <li class="step reveal">
+        <span class="step__n">03</span>
+        <h3>Report <span class="step__t">day 5</span></h3>
+        <p>A document your engineers can execute and your management can read: critical issues, quick wins, structural debt, effort estimates and exact commands.</p>
+      </li>
+      <li class="step reveal">
+        <span class="step__n">04</span>
+        <h3>Remediation <span class="step__t">optional</span></h3>
+        <p>I implement the fixes myself, or coach your team through them. Every change is announced, backed up, reversible and verified afterwards.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ══════════════ AI OPS ══════════════ -->
+<section class="sec sec--alt" id="ai">
+  <div class="wrap">
+    <header class="sec__head reveal">
+      <span class="sec__num">[04]</span>
+      <h2 class="sec__title">$ systemctl status ai-ops.service</h2>
+      <p class="sec__sub">Where AI genuinely helps operations — and, more importantly, where it must be kept on a leash.</p>
+    </header>
+
+    <div class="ai">
+      <div class="ai__main reveal">
+        <div class="ai__panel">
+          <p class="ai__line"><span class="ok">●</span> ai-ops.service — AI-assisted operations layer</p>
+          <p class="ai__meta">Loaded: loaded (/etc/systemd/system/ai-ops.service; enabled)</p>
+          <p class="ai__meta">Active: <span class="ok">active (running)</span> — human-in-the-loop</p>
+          <p class="ai__meta">Guardrails: read-only default · command allowlist · full audit log</p>
+        </div>
+        <p class="ai__text ai__plain">
+          <b>In plain words:</b> I use AI models as a fast, tireless assistant — reading thousands of log lines,
+          explaining failures, drafting procedures — while keeping every decision that changes a live system
+          in human hands.
+        </p>
+        <p class="ai__text">
+          I build AI into operations the way I build everything else: the model gets context, not root access.
+          Agents collect and explain; humans approve anything that mutates state. Every action is logged,
+          attributable and reversible. That is the only way an LLM belongs anywhere near production.
+        </p>
+        <p class="ai__text">
+          This is not theory — <a href="https://github.com/Anton-Babaskin/miab-sentry" target="_blank" rel="noopener">miab-sentry</a>
+          is a working Telegram agent that manages mail servers over SSH with key-based auth,
+          an SQLite audit trail and optional Claude / OpenAI / OpenRouter reasoning on top.
+        </p>
+      </div>
+
+      <div class="ai__grid">
+        <div class="ai__card reveal"><h3>LLM log triage</h3><p>Feed noisy Postfix, systemd and kernel logs to a model that clusters them, names the failure and drafts the fix — you review the diff, not 40k lines.</p></div>
+        <div class="ai__card reveal"><h3>ChatOps agents</h3><p>Telegram / Slack control surfaces over SSH: status, queues, restarts, updates — with allowlisted commands and per-action audit logging.</p></div>
+        <div class="ai__card reveal"><h3>Runbook generation</h3><p>Turn tribal knowledge and shell history into versioned runbooks and Ansible roles that a new hire can execute at 3 a.m.</p></div>
+        <div class="ai__card reveal"><h3>Self-diagnosing fleets</h3><p>Agentless collectors sweep the fleet on a schedule; anomalies get an explanation attached before a human ever opens the ticket.</p></div>
+        <div class="ai__card reveal"><h3>Config &amp; IaC review</h3><p>AI-assisted review of Nginx, Postfix, firewall and Terraform changes for footguns — as a second pair of eyes, never as the approver.</p></div>
+        <div class="ai__card reveal"><h3>Guardrails by design</h3><p>Read-only by default, no secrets in prompts, deterministic scripts for anything destructive, and a kill switch a tired human can find.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ STACK ══════════════ -->
+<section class="sec" id="stack">
+  <div class="wrap">
+    <header class="sec__head reveal">
+      <span class="sec__num">[05]</span>
+      <h2 class="sec__title">Technology stack</h2>
+      <p class="sec__sub">Grouped by area, starting with DevOps. Each group opens with a one-sentence explanation of what it is for — so the list means something whether or not you write code.</p>
+    </header>
+
+    <div class="stack reveal">
+      <div class="stack__tabs" id="stackTabs" role="tablist" aria-label="Technology categories"></div>
+      <div class="stack__panel" id="stackPanel"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ PRINCIPLES ══════════════ -->
+<section class="sec sec--alt" id="principles">
+  <div class="wrap">
+    <header class="sec__head reveal">
+      <span class="sec__num">[06]</span>
+      <h2 class="sec__title">$ cat ~/.engineering_rules</h2>
+      <p class="sec__sub">Five lines that have saved more production systems than any dashboard.</p>
+    </header>
+
+    <ul class="rules">
+      <li class="rule reveal"><span>[01]</span><b>Logs before assumptions.</b><p>The system already told you what happened. Read it before theorizing.</p></li>
+      <li class="rule reveal"><span>[02]</span><b>Backups before changes.</b><p>A snapshot costs seconds. Explaining data loss costs a career.</p></li>
+      <li class="rule reveal"><span>[03]</span><b>Architecture before hype.</b><p>Kubernetes will not fix a design problem. It will scale it.</p></li>
+      <li class="rule reveal"><span>[04]</span><b>Security is not optional.</b><p>It is not a phase after launch. It is part of the install.</p></li>
+      <li class="rule reveal"><span>[05]</span><b>Stability over beautiful theory.</b><p>Boring infrastructure that never pages anyone is the highest form of elegance.</p></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════════ CONTACT ══════════════ -->
+<section class="sec sec--contact" id="contact">
+  <div class="wrap">
+    <header class="sec__head reveal">
+      <span class="sec__num">[07]</span>
+      <h2 class="sec__title">$ ./connect.sh</h2>
+      <p class="sec__sub">Tell me what is broken, what you are building, or what you are not sure about. Short reply, no sales funnel.</p>
+    </header>
+
+    <div class="contact reveal">
+      <div class="contact__box">
+        <p class="contact__ps1"><span class="c-acc">anton@infra</span>:<span class="c-cy">~</span>$ cat contact.json</p>
+        <pre class="contact__json"><code>{
+  "<span class="k">name</span>":     "<span class="s">Anton Babaskin</span>",
+  "<span class="k">role</span>":     "<span class="s">DevOps / Linux Infrastructure Engineer</span>",
+  "<span class="k">location</span>": "<span class="s">Ukraine — remote, worldwide</span>",
+  "<span class="k">timezone</span>": "<span class="s">Europe/Kyiv (UTC+3)</span>",
+  "<span class="k">status</span>":   "<span class="s">open to audits, consulting &amp; long-term work</span>",
+  "<span class="k">response</span>": "<span class="s">usually within 24h</span>"
+}</code></pre>
+      </div>
+
+      <div class="contact__links">
+        <button class="link link--copy" id="copyMail" type="button" data-mail="me@ant0n.dev">
+          <span class="link__k">email</span><span class="link__v">me@ant0n.dev</span><span class="link__a">copy</span>
+        </button>
+        <a class="link" href="mailto:me@ant0n.dev?subject=Infrastructure%20audit%20request">
+          <span class="link__k">write</span><span class="link__v">open mail client</span><span class="link__a">→</span>
+        </a>
+        <a class="link" href="https://t.me/sen1or_anykey" target="_blank" rel="noopener">
+          <span class="link__k">telegram</span><span class="link__v">@sen1or_anykey</span><span class="link__a">→</span>
+        </a>
+        <a class="link" href="https://github.com/Anton-Babaskin" target="_blank" rel="noopener">
+          <span class="link__k">github</span><span class="link__v">Anton-Babaskin</span><span class="link__a">→</span>
+        </a>
+        <a class="link" href="https://www.linkedin.com/in/anton-babaskin/" target="_blank" rel="noopener">
+          <span class="link__k">linkedin</span><span class="link__v">anton-babaskin</span><span class="link__a">→</span>
+        </a>
+        <a class="link" href="https://dou.ua/users/appsklaw/" target="_blank" rel="noopener">
+          <span class="link__k">dou.ua</span><span class="link__v">appsklaw</span><span class="link__a">→</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="cta reveal">
+      <p>Need a second opinion on your infrastructure before it becomes an incident?</p>
+      <a class="btn btn--acc btn--lg" href="mailto:me@ant0n.dev?subject=Infrastructure%20audit%20request">./request-audit --priority=high</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ OPEN SOURCE (bottom) ══════════════ -->
+<section class="sec sec--alt sec--os" id="projects">
+  <div class="wrap">
+    <header class="sec__head reveal">
+      <span class="sec__num">[08]</span>
+      <h2 class="sec__title">$ git log --oneline --author=anton</h2>
+      <p class="sec__sub">Tools I wrote for problems I hit on real systems, published as open source. A few highlights — the full catalogue lives on its own page.</p>
+    </header>
+
+    <div class="repos" id="repos" data-mode="featured"></div>
+
+    <div class="repos__more reveal">
+      <a class="btn btn--acc" href="https://github.com/Anton-Babaskin?tab=repositories" target="_blank" rel="noopener">All projects &amp; details →</a>
+      <a class="btn btn--ghost" href="https://github.com/Anton-Babaskin" target="_blank" rel="noopener">GitHub profile ↗</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer class="ftr">
+  <div class="wrap ftr__in">
+    <p class="ftr__l">© <span id="year">2026</span> Anton Babaskin — built from bare metal upward.</p>
+    <p class="ftr__r">
+      <span class="pulse pulse--sm" aria-hidden="true"></span>
+      uptime <span id="uptime">00:00:00</span> · <span id="kyiv">--:--</span> Kyiv
+    </p>
+  </div>
+</footer>
+
+<!-- ══════════════ COMMAND PALETTE ══════════════ -->
+<div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Command palette" hidden>
+  <div class="palette__box">
+    <div class="palette__in">
+      <span class="c-acc">&gt;</span>
+      <input id="paletteInput" type="text" placeholder="jump to section, run a command…" spellcheck="false" aria-label="Command palette input">
+      <kbd>esc</kbd>
+    </div>
+    <ul class="palette__list" id="paletteList" role="listbox"></ul>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ============================================================
+   data.js — all site content lives here.
+   Edit this file to update the site; no other file needs touching.
+   ============================================================ */
+window.SITE = {
+
+  /* rotating roles under the name */
+  roles: [
+    'DevOps & Infrastructure Engineer',
+    'Senior Linux Systems Engineer',
+    'Mail Infrastructure Specialist',
+    'Network & VPN Engineer',
+    'AI-assisted Automation Builder'
+  ],
+
+  /* systemd-style boot lines */
+  boot: [
+    ['ok',   'Loading kernel modules'],
+    ['ok',   'Mounting /dev/production'],
+    ['ok',   'Started systemd-networkd.service'],
+    ['ok',   'Started sshd.service — OpenSSH daemon'],
+    ['cy',   'Checking backups ......................... verified'],
+    ['ok',   'Started postfix.service — Postfix Mail Transport'],
+    ['ok',   'Started wg-quick@wg0.service — WireGuard'],
+    ['ok',   'Started prometheus.service'],
+    ['cy',   'Reading /etc/engineering_rules ........... 5 rules'],
+    ['ok',   'Started ai-ops.service — human in the loop'],
+    ['ok',   'Reached target ant0n.dev']
+  ],
+
+  /* scrolling marquee */
+  ticker: [
+    'Linux', 'Debian', 'Ubuntu', 'Proxmox VE', 'ZFS', 'Docker', 'Kubernetes',
+    'CI/CD', 'GitHub Actions', 'Ansible', 'Terraform', 'Postfix', 'Dovecot',
+    'DMARC', 'WireGuard', 'nftables', 'Nginx', 'HAProxy', 'Prometheus',
+    'Grafana', 'Loki', 'Python', 'Bash', 'Hetzner', 'AWS', 'Fail2Ban',
+    'restic', 'LLM ChatOps'
+  ],
+
+  /* ============================================================
+     TECHNOLOGY STACK
+     Each group has a plain-language "why" line so a non-technical
+     reader understands what the category is for.
+     ============================================================ */
+  stack: [
+    { id:'devops', label:'DevOps & Automation', tag:'core',
+      why:'Automating everything a human would otherwise do by hand — builds, deployments, provisioning, routine operations — so every release is repeatable, reviewable and reversible.',
+      lead:'# build \u2192 test \u2192 ship \u2192 verify, without a human in the critical path',
+      items:['Ansible','Terraform','Bash','Python','GitHub Actions','GitLab CI','Git workflows','Infrastructure as Code','Docker','Docker Compose','Kubernetes','Helm','container registries','image hardening','Packer','cloud-init','blue/green &amp; rolling deploys','automated rollback','systemd timers / cron','config drift detection','secrets management','environment parity (dev / stage / prod)','release runbooks'] },
+
+    { id:'linux', label:'Linux & Systems', tag:'core',
+      why:'Production Linux administration across the full server lifecycle: deployment, configuration, troubleshooting, performance tuning, storage, services, security and day-to-day operations.',
+      lead:'# production Linux from bootloader to post-mortem',
+      items:['Debian','Ubuntu','RHEL / CentOS / AlmaLinux / Rocky Linux','systemd','journald','rsyslog','OpenSSH','sudo / PAM','cron / systemd timers','APT / DNF / YUM','Bash','Python','ZFS','LVM','mdadm / RAID','ext4 / XFS','NFS / SMB','SELinux / AppArmor','kernel &amp; sysctl tuning','process &amp; service troubleshooting','top / htop','iostat','vmstat','sar','lsof','strace'] },
+
+    { id:'net', label:'Network, Wi-Fi & VPN',
+      why:'Design, deployment and troubleshooting of office, server and cloud networks, secure remote access, site-to-site connectivity, Wi-Fi infrastructure and censorship-resistant connectivity.',
+      lead:'# routing, segmentation, secure connectivity and packets that actually reach their destination',
+      items:['MikroTik','Ubiquiti UniFi','Cisco','TCP/IP','IPv4 / IPv6','VLAN','NAT','routing','static routes','policy routing','DNS / BIND','DNSSEC','DHCP','firewalling','iptables / nftables','WireGuard','OpenVPN','IPsec / IKEv2','L2TP / IPsec','OpenVPN + Shadowsocks','OpenVPN + Cloak','Xray','VLESS','REALITY','anti-DPI / censorship-resistant VPN solutions','site-to-site VPN','split tunneling','split DNS','tcpdump','mtr','traceroute','Wireshark','Wi-Fi design','access points','channel planning','2.4 / 5 / 6 GHz','WPA2 / WPA3','802.11k / 802.11v / 802.11r','seamless roaming'] },
+
+    { id:'virt', label:'Virtualization & Cloud',
+      why:'Where the servers physically live: a rented rack, a hypervisor splitting one machine into many, or a cloud provider. Choosing between them is as much a cost decision as a technical one.',
+      lead:'# bare metal, hypervisor or cloud \u2014 chosen on cost and risk, not fashion',
+      items:['Proxmox VE','KVM / QEMU','LXC','VM migration &amp; consolidation','Hetzner (dedicated + cloud)','OVH','AWS (EC2 / S3 / Route53)','DigitalOcean','Vultr','colocation &amp; bare metal','IPMI / iDRAC / rescue mode','ZFS storage pools','snapshots &amp; clones','cloud-init','capacity planning','cost optimisation'] },
+
+    { id:'web', label:'Web, Proxy & TLS',
+      why:'The edge of the infrastructure \u2014 what users actually connect to. Reverse proxies, certificates, virtual hosts, caching and the rules that decide who gets through.',
+      lead:'# the front door, and the lock on it',
+      items:['Nginx','Apache','HAProxy','Traefik','reverse proxy','load balancing','TLS termination','Let\u2019s Encrypt / ACME','certbot','SSL/TLS configuration','HSTS','HTTP/2 &amp; HTTP/3','virtual hosts','rate limiting','caching &amp; compression','WAF basics','Cloudflare / CDN','PHP-FPM','LAMP / LEMP stacks','WordPress hosting','health checks &amp; failover'] },
+
+    { id:'mail', label:'Mail Infrastructure', tag:'specialism',
+      why:'Running your own email so that messages actually arrive instead of landing in spam. Most engineers avoid this area \u2014 it is one of my strongest.',
+      lead:'# the specialism most engineers quietly avoid',
+      items:['Postfix','Dovecot','Mailcow','iRedMail','Mail-in-a-Box','Zimbra','Microsoft Exchange','rspamd / SpamAssassin','Postgrey','OpenDKIM','SPF / DKIM / DMARC','MTA-STS / TLS-RPT','RBL delisting','deliverability tuning','queue &amp; bounce forensics','mail migration'] },
+
+    { id:'obs', label:'Monitoring & Observability',
+      why:'Knowing something is wrong before your customers tell you \u2014 and having enough signal to explain why. Good observability turns a midnight outage into a short fix during working hours.',
+      lead:'# if it is not alerting, it is not monitored',
+      items:['Prometheus','Grafana','Loki','Alertmanager','Zabbix','Netdata','node_exporter','blackbox_exporter','cAdvisor','journald / rsyslog','log aggregation','metrics &amp; dashboards','alert routing','on-call escalation','Telegram / Slack alerting','synthetic checks','uptime &amp; SLA reporting','capacity trending'] },
+
+    { id:'backup', label:'Backup & Disaster Recovery',
+      why:'Making data loss a recoverable event rather than a company-ending one \u2014 with restores that have actually been tested, not assumed.',
+      lead:'# a backup you have never restored is a rumour',
+      items:['3-2-1 strategy','restic','BorgBackup','rsync','ZFS snapshots &amp; replication','LVM snapshots','Proxmox Backup Server','MySQL / PostgreSQL dumps','offsite &amp; immutable copies','retention policy','backup encryption','restore drills','RTO / RPO definition','bare-metal recovery','backup monitoring &amp; alerting'] },
+
+    { id:'sec', label:'Security & Hardening',
+      why:'Practical infrastructure security focused on reducing attack surface, securing access, hardening Linux hosts and networks, identifying exposure and responding to real operational incidents.',
+      lead:'# reduce attack surface, control access, collect evidence, verify every change',
+      items:['Linux hardening','CIS-style security baselines','SSH hardening','key-only authentication','sudo / PAM','least privilege','users / groups / ACLs','firewall hardening','iptables / nftables','network segmentation','Fail2Ban','SELinux / AppArmor','auditd','SSL / TLS','PKI &amp; certificate management','patch management','CVE review','vulnerability assessment','exposed service auditing','port &amp; service review','secure configuration review','access review','backup encryption','log analysis','incident investigation','incident response'] },
+
+    { id:'ai', label:'AI-assisted Engineering', tag:'new',
+      why:'Using language models as a fast, tireless assistant for engineering and operations work \u2014 reading logs, drafting runbooks, reviewing configs \u2014 with strict limits on what they are allowed to touch.',
+      lead:'# context, not root',
+      items:['Anthropic Claude','OpenAI','OpenRouter','LLM log triage','ChatOps agents (Telegram / Slack)','agentless collectors (asyncssh)','prompt-driven runbooks','AI-assisted config &amp; IaC review','incident summarisation','audit-logged tool calling','human-approval gates','read-only by default'] }
+  ],
+
+  /* ============================================================
+     OPEN-SOURCE PROJECTS (all real — github.com/Anton-Babaskin)
+     `featured: true` → shown in the strip on the home page.
+     ============================================================ */
+  filters: ['all','devops','mailops','network','automation','ai','desktop'],
+  projects: [
+    { name:'miab-radar', lang:'Bash', cats:['mailops','automation','devops'], featured:true,
+      desc:'Production-grade Mail-in-a-Box monitoring &amp; audit tool. Turns service state, queues, logs, DNS, TLS and security signals into one prioritized health view.',
+      plain:'Tells a mail server administrator, in one screen, what is actually broken and what to fix first.',
+      tags:['Postfix','Dovecot','DNS','TLS','Fail2Ban','exit codes'],
+      url:'https://github.com/Anton-Babaskin/miab-radar' },
+
+    { name:'miab-sentry', lang:'Python', cats:['mailops','ai','automation'], ai:true, featured:true,
+      desc:'Telegram MailOps agent that manages and diagnoses mail servers over SSH from a separate control node. Key-based auth, SQLite audit log, optional Claude / OpenAI / OpenRouter reasoning.',
+      plain:'Lets you check and repair a mail server from your phone — safely, with every action logged.',
+      tags:['Telegram Bot API','SSH','SQLite','LLM','systemd'],
+      url:'https://github.com/Anton-Babaskin/miab-sentry' },
+
+    { name:'FleetOps', lang:'Python 3.12', cats:['automation','ai','devops'], ai:true, featured:true,
+      desc:'Open-source, self-hosted, agentless diagnostics for Linux server fleets. Read-only SSH collection of load, memory, disk and service state, with a CLI and an optional Telegram control surface.',
+      plain:'Health-checks a whole fleet of servers at once without installing anything on them.',
+      tags:['asyncssh','Pydantic','Docker Compose','pytest','MIT'],
+      url:'https://github.com/Anton-Babaskin/FleetOps' },
+
+    { name:'proxmox-hetzner', lang:'Bash', cats:['automation','network','devops'], featured:true,
+      desc:'Install Proxmox VE on a Hetzner dedicated server without KVM console access — one command handles ISO, auto-install, ZFS RAID-1 and IPv4/IPv6 networking.',
+      plain:'Turns a bare rented server into a working virtualization host with a single command.',
+      tags:['Proxmox VE','ZFS','Hetzner','IPv6'],
+      url:'https://github.com/Anton-Babaskin/proxmox-hetzner' },
+
+    { name:'mail-sec-audit', lang:'Bash', cats:['mailops','automation'], featured:true,
+      desc:'Read-only security posture check for production Linux mail servers — MTA services, TLS certificates, DNS records, firewall rules and auth logs. Changes nothing by default.',
+      plain:'A safe security check-up for a mail server: it looks, reports, and touches nothing.',
+      tags:['Postfix','Exim','OpenSMTPD','nftables','auditd','MIT'],
+      url:'https://github.com/Anton-Babaskin/mail-sec-audit' },
+
+    { name:'Docker-WireGuard-Monitor', lang:'Bash', cats:['network','automation'], featured:true,
+      desc:'Health monitoring for containerized WireGuard: container state, interface health, peer connections and connectivity checked every two minutes, with instant Telegram alerts.',
+      plain:'Makes sure a company VPN never stays broken silently.',
+      tags:['WireGuard','Docker','Telegram','systemd'],
+      url:'https://github.com/Anton-Babaskin/Docker-WireGuard-Monitor' },
+
+    { name:'mail_analyzer.sh', lang:'Bash', cats:['mailops'],
+      desc:'Postfix log analytics: domains, relays, routes, message sizes and delivery failures, with time filtering and CSV / JSON export. ShellCheck-clean.',
+      plain:'Answers "where is our email going, and why did it fail?" from raw server logs.',
+      tags:['Postfix','awk','CSV','JSON','MIT'],
+      url:'https://github.com/Anton-Babaskin/mail_analyzer.sh' },
+
+    { name:'Xray-easy-installer', lang:'Bash', cats:['network'],
+      desc:'One-command installer for Xray VLESS + REALITY + Vision on :443 — generated config, systemd service, firewall rules and an xuser CLI for managing users and links.',
+      plain:'Stands up a private, censorship-resistant tunnel in one command.',
+      tags:['Xray','VLESS','REALITY','systemd','iptables'],
+      url:'https://github.com/Anton-Babaskin/Xray-easy-installer' },
+
+    { name:'Postfix-Telegram-Notifier', lang:'Bash', cats:['mailops','automation'],
+      desc:'Real-time Telegram alerts for mail delivery problems, so a failing queue is noticed before customers notice it.',
+      plain:'Pings you the moment outgoing email starts failing.',
+      tags:['Postfix','Telegram','logs'],
+      url:'https://github.com/Anton-Babaskin/Postfix-Telegram-Notifier' },
+
+    { name:'postgrey-telegram-notify', lang:'Bash', cats:['mailops'],
+      desc:'Greylisting visibility: surfaces Postgrey decisions to Telegram so deferred legitimate senders are caught early.',
+      plain:'Catches the case where real customer email is being delayed by spam filtering.',
+      tags:['Postgrey','Postfix','Telegram'],
+      url:'https://github.com/Anton-Babaskin/postgrey-telegram-notify' },
+
+    { name:'SysTuneX', lang:'C# / .NET 8', cats:['desktop','automation'],
+      desc:'Windows 11 optimizer focused on latency and automated system profiles. Every change is documented and reversible — the same rule I apply to servers.',
+      plain:'A desktop tool built with the same discipline as production systems: every change reversible.',
+      tags:['.NET 8','WPF','MVVM','WMI','PowerShell'],
+      url:'https://github.com/Anton-Babaskin/SysTuneX' }
+  ],
+
+  /* ============================================================
+     TERMINAL EASTER EGGS — text pools for `fortune`, `bofh`, `joke`.
+     Add / remove lines freely, nothing else needs to change.
+     ============================================================ */
+  fun: {
+    fortunes: [
+      'It is not DNS. There is no way it is DNS. It was DNS.',
+      'Backups are a rumour until you have restored one.',
+      'The most dangerous sentence in operations: "it worked on staging".',
+      'Every outage is a documentation bug that got old enough to vote.',
+      'Nothing is as permanent as a temporary cron job.',
+      'A monitoring system that never pages you is either perfect or unplugged. It is unplugged.',
+      'If you do not have a staging environment, you have a staging environment. Your users are in it.',
+      'The cloud is just someone else’s computer, and they have outages too.',
+      'Root cause: someone had root.',
+      'You do not rise to the level of your monitoring. You fall to the level of your runbooks.',
+      'The server was fine until somebody said "it has been stable lately".',
+      'Any sufficiently advanced shell script is indistinguishable from a product.',
+      'Uptime is a promise you make to a machine that cannot read.',
+      'Complexity is a loan. Incidents are the interest.',
+      'The best infrastructure is the one nobody has any stories about.'
+    ],
+    excuses: [
+      'cosmic ray hit the parity bit',
+      'the firewall is learning',
+      'DNS propagation, allegedly',
+      'someone plugged the UPS into itself',
+      'certificate expired again, at 03:14 on a Saturday',
+      'the intern found the production console',
+      'rack-level squirrel incident',
+      'the disk was 100% full of logs about the disk being full',
+      'the load balancer balanced everything onto one node, out of loyalty',
+      'the NTP server believes it is 1970',
+      'Kubernetes rescheduled the pod to a better life',
+      'the backup completed successfully into /dev/null',
+      'the domain was renewed but the certificate was not',
+      'the spam filter correctly classified the CEO as the CEO',
+      'someone enabled IPv6 and everything got faster, which broke every assumption'
+    ],
+    jokes: [
+      'There are 10 kinds of people: those who understand binary, those who do not, and those who did not expect base 3.',
+      'A SQL query walks into a bar, approaches two tables and asks: may I join you?',
+      'I would tell you a UDP joke, but you might not get it.',
+      'I would tell you a TCP joke, but I would have to keep repeating it until you got it.',
+      'Why do sysadmins hate nature? Too many bugs and no root access.',
+      'The S in IoT stands for Security.',
+      'How many DevOps engineers does it take to change a lightbulb? None. That is a hardware problem — we will containerize the darkness.',
+      'My password is the last eight digits of pi.',
+      'Documentation is a love letter you write to your future self at 3 a.m.'
+    ]
+  },
+
+  /* command palette entries */
+  palette: [
+    { k:'go',  label:'In plain words — what I do',   href:'#plain'      },
+    { k:'go',  label:'Services & audit packages',    href:'#services'   },
+    { k:'go',  label:'How an engagement runs',       href:'#process'    },
+    { k:'go',  label:'AI ops & automation',          href:'#ai'         },
+    { k:'go',  label:'Technology stack',             href:'#stack'      },
+    { k:'go',  label:'Engineering principles',       href:'#principles' },
+    { k:'go',  label:'Contact',                      href:'#contact'    },
+    { k:'go',  label:'Open-source projects',         href:'#projects'   },
+    { k:'ext', label:'All projects (full page)',     href:'https://github.com/Anton-Babaskin?tab=repositories' },
+    { k:'ext', label:'GitHub — Anton-Babaskin',      href:'https://github.com/Anton-Babaskin' },
+    { k:'ext', label:'LinkedIn — anton-babaskin',    href:'https://www.linkedin.com/in/anton-babaskin/' },
+    { k:'ext', label:'Telegram — @sen1or_anykey',    href:'https://t.me/sen1or_anykey' },
+    { k:'run', label:'Email me@ant0n.dev',         href:'mailto:me@ant0n.dev?subject=Infrastructure%20audit%20request' },
+    { k:'run', label:'Copy email address',           action:'copyMail' },
+    { k:'run', label:'Toggle matrix rain',           action:'toggleMatrix' }
+  ]
+};
+
+;
+/* ============================================================
+   matrix.js — background "digital rain"
+   - DPR aware, throttled to ~30fps
+   - pauses when the tab is hidden or the canvas is off-screen
+   - disabled entirely under prefers-reduced-motion
+   ============================================================ */
+(function () {
+  'use strict';
+
+  var cv = document.getElementById('matrix');
+  if (!cv) return;
+
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var ctx = cv.getContext('2d', { alpha: true });
+
+  var GLYPHS = 'アイウエオカキクケコサシスセソタチツテトナニヌネノABCDEF0123456789$#/\\|<>[]{}=+*'.split('');
+  var WORDS = ['sudo', 'systemctl', 'journalctl', 'postfix', 'wg0', 'zfs', 'nft', 'grep', 'ssh', 'docker', 'ansible'];
+
+  var font = 14, cols = 0, drops = [], raf = 0, last = 0, running = false;
+  var W = 0, H = 0, dpr = 1;
+
+  function size() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = window.innerWidth;
+    H = window.innerHeight;
+    cv.width = Math.floor(W * dpr);
+    cv.height = Math.floor(H * dpr);
+    cv.style.width = W + 'px';
+    cv.style.height = H + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    font = W < 620 ? 12 : 14;
+    cols = Math.ceil(W / font);
+    drops = new Array(cols);
+    for (var i = 0; i < cols; i++) drops[i] = Math.random() * -60;
+  }
+
+  function draw(now) {
+    raf = requestAnimationFrame(draw);
+    if (now - last < 33) return;          // ~30fps
+    last = now;
+
+    ctx.fillStyle = 'rgba(5,8,10,0.075)';
+    ctx.fillRect(0, 0, W, H);
+    ctx.font = font + 'px "JetBrains Mono", monospace';
+
+    for (var i = 0; i < cols; i++) {
+      var y = drops[i] * font;
+      if (y > 0) {
+        var head = Math.random() > 0.985;
+        var ch = head && Math.random() > 0.6
+          ? WORDS[(Math.random() * WORDS.length) | 0][0]
+          : GLYPHS[(Math.random() * GLYPHS.length) | 0];
+
+        // bright head
+        ctx.fillStyle = head ? '#00d4ff' : 'rgba(0,255,156,0.85)';
+        ctx.fillText(ch, i * font, y);
+
+        // faint trail character
+        if (y - font > 0 && Math.random() > 0.5) {
+          ctx.fillStyle = 'rgba(0,255,156,0.18)';
+          ctx.fillText(GLYPHS[(Math.random() * GLYPHS.length) | 0], i * font, y - font);
+        }
+      }
+      if (y > H && Math.random() > 0.975) drops[i] = 0;
+      drops[i] += 0.55;
+    }
+  }
+
+  function start() {
+    if (running || reduce.matches) return;
+    running = true;
+    last = 0;
+    raf = requestAnimationFrame(draw);
+  }
+  function stop() {
+    running = false;
+    cancelAnimationFrame(raf);
+  }
+
+  var t;
+  window.addEventListener('resize', function () {
+    clearTimeout(t);
+    t = setTimeout(size, 180);
+  }, { passive: true });
+
+  document.addEventListener('visibilitychange', function () {
+    document.hidden ? stop() : start();
+  });
+
+  reduce.addEventListener('change', function () {
+    reduce.matches ? (stop(), ctx.clearRect(0, 0, W, H)) : start();
+  });
+
+  size();
+  start();
+
+  /* exposed so the command palette / terminal can toggle it */
+  window.MATRIX = {
+    toggle: function () {
+      if (running) { stop(); cv.style.opacity = '0'; return false; }
+      cv.style.opacity = '';
+      start();
+      return true;
+    },
+    isOn: function () { return running; }
+  };
+})();
+
+;
+/* ============================================================
+   terminal.js — the hero terminal
+   1) plays a scripted session on load
+   2) then accepts real commands from the visitor
+   3) ~30 hidden joke commands, animated ones included
+   ============================================================ */
+(function () {
+  'use strict';
+
+  var body = document.getElementById('termBody');
+  var form = document.getElementById('termForm');
+  var input = document.getElementById('termCmd');
+  if (!body || !form || !input) return;
+
+  var FUN = (window.SITE && window.SITE.fun) || { fortunes: [], excuses: [], jokes: [] };
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var history = [];
+  var hIdx = -1;
+  var aborted = false;   // visitor started typing — the intro steps aside
+  var running = false;   // an animated command is playing
+
+  /* ---------- helpers ---------- */
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function line(html, cls) {
+    var p = document.createElement('p');
+    if (cls) p.className = cls;
+    p.innerHTML = html;
+    body.appendChild(p);
+    body.scrollTop = body.scrollHeight;
+    return p;
+  }
+  function sleep(ms) { return new Promise(function (r) { setTimeout(r, reduce ? Math.min(ms, 30) : ms); }); }
+  function pick(a) { return a && a.length ? a[(Math.random() * a.length) | 0] : ''; }
+  function rnd(a, b) { return a + Math.random() * (b - a); }
+  /* measure the real character width once — mono font, so one probe is enough */
+  var _cw = 0;
+  function charW() {
+    if (_cw) return _cw;
+    var s = document.createElement('span');
+    s.textContent = '0'.repeat(100);
+    s.style.cssText = 'position:absolute;visibility:hidden;white-space:pre;';
+    body.appendChild(s);
+    _cw = s.getBoundingClientRect().width / 100 || 7.4;
+    s.remove();
+    return _cw;
+  }
+  function cols() {
+    var pad = 30; // .term__body horizontal padding
+    return Math.max(26, Math.min(78, Math.floor((body.clientWidth - pad) / charW())));
+  }
+  window.addEventListener('resize', function () { _cw = 0; }, { passive: true });
+
+  var PS1 = '<span class="c-acc">anton@infra</span>:<span class="c-cy">~</span>$ ';
+  var OK = '<span class="l-ok">[  OK  ]</span> ';
+
+  async function typeCmd(cmd) {
+    var p = line(PS1, 'l-cmd');
+    for (var i = 0; i < cmd.length; i++) {
+      if (aborted) { p.remove(); return; }
+      p.innerHTML = PS1 + esc(cmd.slice(0, i + 1)) + '<span class="caret"></span>';
+      body.scrollTop = body.scrollHeight;
+      await sleep(16 + Math.random() * 26);
+    }
+    p.innerHTML = PS1 + esc(cmd);
+  }
+
+  /* progress bar helper: returns a promise, animates one <p> in place */
+  async function bar(label, ms, cls) {
+    var p = line('', cls || '');
+    var steps = 16;
+    for (var i = 0; i <= steps; i++) {
+      var pct = Math.round((i / steps) * 100);
+      var filled = '#'.repeat(i), empty = '-'.repeat(steps - i);
+      p.innerHTML = label + ' [<span class="l-ok">' + filled + '</span>' + empty + '] ' + pct + '%';
+      body.scrollTop = body.scrollHeight;
+      await sleep(ms / steps);
+    }
+    return p;
+  }
+
+  /* ============================================================
+     SERIOUS COMMANDS
+     ============================================================ */
+  var CMDS = {
+    help: function () {
+      return [
+        ['l-cy', 'available commands'],
+        ['l-mut', '─────────────────────────────────────────────'],
+        ['', '<b class="l-ok">whoami</b>      who is behind this site'],
+        ['', '<b class="l-ok">skills</b>      core technical areas'],
+        ['', '<b class="l-ok">services</b>    what you can hire me for'],
+        ['', '<b class="l-ok">projects</b>    open-source tools'],
+        ['', '<b class="l-ok">ai</b>          how I use LLMs in operations'],
+        ['', '<b class="l-ok">audit</b>       what an infrastructure audit includes'],
+        ['', '<b class="l-ok">contact</b>     how to reach me'],
+        ['', '<b class="l-ok">neofetch</b>    system information'],
+        ['', '<b class="l-ok">uptime</b> · <b class="l-ok">date</b> · <b class="l-ok">df</b> · <b class="l-ok">ls</b> · <b class="l-ok">history</b> · <b class="l-ok">clear</b>'],
+        ['l-mut', '─────────────────────────────────────────────'],
+        ['l-warn', 'this is the short list. there are ~30 more.'],
+        ['', 'type <b class="l-ok">commands</b> to see every single one — including the ones'],
+        ['', 'that are not serious at all.'],
+        ['l-mut', 'tip: ↑ / ↓ for history, Tab to complete, Ctrl+L to clear']
+      ];
+    },
+
+    /* full, categorised command index */
+    commands: function () {
+      var G = [
+        ['work', 'l-ok', ['whoami', 'skills', 'services', 'audit', 'projects', 'ai', 'contact', 'hire', 'salary']],
+        ['system', 'l-cy', ['neofetch', 'uptime', 'date', 'df', 'ls', 'top', 'history', 'man <page>', 'clear', 'exit']],
+        ['animated', 'l-warn', ['sl', 'hack [target]', 'htop', 'tail -f', 'ping [host]', 'reboot', 'cat /dev/urandom']],
+        ['fun', 'l-warn', ['fortune', 'bofh', 'joke', 'cowsay <text>', 'coffee', 'xyzzy', 'dns', 'pray',
+                           'password', 'sudo !!', 'matrix', 'vim', 'nano', 'emacs', 'nmap', 'kubectl',
+                           'docker', 'git blame', 'ssh root@prod']],
+        ['do not', 'l-err', ['sudo rm -rf /', 'chmod 777 /', ':(){ :|:& };:', 'sudo make me a sandwich']]
+      ];
+
+      var out = [['l-cy', 'command index — everything this shell answers to']];
+      var RULE = '─'.repeat(Math.max(24, cols() - 2));
+      out.push(['l-mut', RULE]);
+
+      var IND = 11;                                   // width of the category gutter
+      var W = Math.max(22, cols() - IND - 1);         // chars available for the values
+      G.forEach(function (g) {
+        var label = g[0], cls = g[1], items = g[2];
+        var lines = [], cur = '';
+        items.forEach(function (it) {
+          var next = cur ? cur + ' · ' + it : it;
+          if (next.length > W) { lines.push(cur); cur = it; } else { cur = next; }
+        });
+        if (cur) lines.push(cur);
+        lines.forEach(function (l, i) {
+          out.push(['l-nowrap', '<span class="l-mut">' + (i === 0 ? (label + ' ').padEnd(IND, ' ') : ' '.repeat(IND)).replace(/ /g, '&nbsp;') +
+                        '</span><span class="' + cls + '">' + esc(l) + '</span>']);
+        });
+      });
+
+      out.push(['l-mut', RULE]);
+      out.push(['', '<span class="l-mut">keys&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>↑ / ↓ history · Tab complete · Ctrl+L clear']);
+      out.push(['', '<span class="l-mut">bonus&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="l-cy">↑ ↑ ↓ ↓ ← → ← → B A</span> <span class="l-mut">on the page</span>']);
+      out.push(['l-mut', 'not every one of them is documented. that is the point.']);
+      return out;
+    },
+    whoami: function () {
+      return [
+        ['l-ok', 'Anton Babaskin'],
+        ['', 'DevOps &amp; Linux infrastructure engineer, 15+ years in production.'],
+        ['', 'Bare metal, Proxmox, cloud, containers, mail, VPN, monitoring.'],
+        ['l-mut', 'Ukraine · remote worldwide · me@ant0n.dev']
+      ];
+    },
+    skills: function () {
+      return [
+        ['l-cy', 'core areas'],
+        ['', '  devops       Ansible · Terraform · CI/CD · IaC · Docker · K8s'],
+        ['', '  linux        Debian · Ubuntu · RHEL family · systemd · ZFS'],
+        ['', '  network      MikroTik · UniFi · routing · VLAN · Wi-Fi · VPN'],
+        ['', '  virt         Proxmox VE · KVM · LXC · Hetzner · AWS'],
+        ['', '  web          Nginx · HAProxy · Traefik · TLS · Cloudflare'],
+        ['', '  mail         Postfix · Dovecot · Mailcow · iRedMail · Zimbra'],
+        ['', '  observe      Prometheus · Grafana · Loki · Zabbix'],
+        ['', '  backup       restic · Borg · ZFS · PBS · restore drills'],
+        ['', '  security     hardening · Fail2Ban · auditd · CVE · incident response'],
+        ['', '  ai           LLM log triage · ChatOps agents · runbook generation'],
+        ['l-mut', 'full breakdown → the "stack" section below']
+      ];
+    },
+    services: function () {
+      return [
+        ['l-cy', 'engagements'],
+        ['', '  01  infrastructure audit          read-only, prioritized report'],
+        ['', '  02  devops / ci-cd &amp; iac         pipelines, ansible, terraform'],
+        ['', '  03  hardening &amp; compliance       CIS-style, reversible'],
+        ['', '  04  mail &amp; deliverability        Postfix, DMARC, RBL rescue'],
+        ['', '  05  monitoring &amp; alerting        alerts that mean something'],
+        ['', '  06  backup &amp; disaster recovery   including real restore drills'],
+        ['', '  07  migration &amp; platform build   metal ↔ cloud, zero drama'],
+        ['', '  08  networking &amp; VPN             MikroTik, WireGuard, Wi-Fi'],
+        ['', '  09  firefighting                 production is down, right now'],
+        ['l-mut', 'run `contact` to start one']
+      ];
+    },
+    audit: function () {
+      return [
+        ['l-cy', './run-audit.sh --scope=full --mode=read-only'],
+        ['', OK + 'host inventory, services, capacity'],
+        ['', OK + 'security posture: ssh, firewall, users, sudo, exposure'],
+        ['', OK + 'mail: spf/dkim/dmarc/ptr, queues, reputation'],
+        ['', OK + 'backups: existence, encryption, restore test'],
+        ['', OK + 'monitoring &amp; alerting coverage gaps'],
+        ['', OK + 'single points of failure &amp; documentation debt'],
+        ['l-cy', 'output: prioritized report + remediation plan + call'],
+        ['l-mut', 'typical duration: 3–5 working days']
+      ];
+    },
+    projects: function () {
+      var out = [['l-cy', 'open-source (github.com/Anton-Babaskin)']];
+      ((window.SITE && window.SITE.projects) || []).slice(0, 8).forEach(function (p) {
+        out.push(['', '  <span class="l-ok">' + esc(p.name) + '</span> <span class="l-mut">— ' + esc(p.lang) + '</span>']);
+      });
+      out.push(['l-mut', 'full catalogue → github.com/Anton-Babaskin']);
+      return out;
+    },
+    ai: function () {
+      return [
+        ['l-cy', 'ai-ops.service — human in the loop'],
+        ['', OK + 'llm log triage — cluster noise, name the failure'],
+        ['', OK + 'chatops agents over ssh with command allowlist'],
+        ['', OK + 'runbook &amp; ansible role generation from tribal knowledge'],
+        ['', OK + 'agentless fleet sweeps with explanations attached'],
+        ['l-warn', '[ WARN ] models get context, never root'],
+        ['l-mut', 'reference implementation: miab-sentry, FleetOps']
+      ];
+    },
+    contact: function () {
+      return [
+        ['l-cy', 'contact'],
+        ['', '  email      <span class="l-ok">me@ant0n.dev</span>'],
+        ['', '  telegram   <span class="l-ok">@sen1or_anykey</span>'],
+        ['', '  github     <span class="l-ok">github.com/Anton-Babaskin</span>'],
+        ['', '  linkedin   <span class="l-ok">linkedin.com/in/anton-babaskin</span>'],
+        ['l-mut', 'usually replies within 24h']
+      ];
+    },
+    neofetch: function () {
+      return [
+        ['l-ok', '       _nnnn_        <span class="l-cy">anton@ant0n.dev</span>'],
+        ['l-ok', '      dGGGGMMb       ------------------'],
+        ['l-ok', "     @p~qp~~qMb      <span class=\"l-cy\">OS</span>: Debian GNU/Linux (mentally)"],
+        ['l-ok', "     M|@||@) M|      <span class=\"l-cy\">Uptime</span>: 15+ years"],
+        ['l-ok', '     @,----.JM|      <span class="l-cy">Shell</span>: bash 5.2'],
+        ['l-ok', "    JS^\\__/  qKL     <span class=\"l-cy\">Role</span>: DevOps / Linux engineer"],
+        ['l-ok', "   dZP        qKRb   <span class=\"l-cy\">Focus</span>: audits, hardening, mail, observability"],
+        ['l-ok', '  dZP          qKKb  <span class="l-cy">Coffee</span>: dangerously optimistic'],
+        ['l-ok', ' fZP            SMMb <span class="l-cy">Pager</span>: quiet, and that is the point']
+      ];
+    },
+    uptime: function () {
+      return [['', ' ' + new Date().toUTCString().slice(17, 25) + ' up 15+ years,  1 user,  load average: production, production, production']];
+    },
+    date: function () { return [['', new Date().toString()]]; },
+    df: function () {
+      return [
+        ['l-mut', 'Filesystem       Size  Used Avail Use% Mounted on'],
+        ['', '/dev/experience  15y   15y     0 100% /'],
+        ['', '/dev/patience    1.0T  240G  784G  24% /var/oncall'],
+        ['', '/dev/backups     8.0T  3.1T  4.9T  39% /srv/restores'],
+        ['l-warn', '[ WARN ] /dev/hype is 98% full — consider pruning']
+      ];
+    },
+    ls: function () {
+      return [['', '<span class="l-cy">services/</span>  <span class="l-cy">projects/</span>  <span class="l-cy">stack/</span>  <span class="l-cy">principles/</span>  contact.json  README.md  .secrets']];
+    },
+    history: function () {
+      if (!history.length) return [['l-mut', 'no history yet']];
+      return history.map(function (h, i) { return ['l-mut', '  ' + (i + 1) + '  ' + esc(h)]; });
+    },
+    exit: function () { return [['l-mut', 'logout — but the page stays. Sorry.']]; },
+    top: function () {
+      return [
+        ['l-mut', 'PID   USER    %CPU  COMMAND'],
+        ['', '  1   root     0.3  systemd'],
+        ['', '412   anton   18.4  reading-logs'],
+        ['', '907   anton    9.1  writing-runbooks'],
+        ['', '1337  anton   62.0  refusing-to-guess']
+      ];
+    },
+
+    /* ============================================================
+       JOKES — static
+       ============================================================ */
+    fortune: function () {
+      return [['l-cy', '“' + pick(FUN.fortunes) + '”'], ['l-mut', '   — /usr/share/fortune/sysadmin']];
+    },
+    bofh: function () {
+      return [
+        ['l-warn', 'BOFH excuse server v2.1'],
+        ['', 'today’s root cause: <span class="l-ok">' + pick(FUN.excuses) + '</span>'],
+        ['l-mut', 'ticket closed. do not reopen.']
+      ];
+    },
+    joke: function () { return [['l-cy', pick(FUN.jokes)]]; },
+    xyzzy: function () { return [['l-mut', 'Nothing happens.']]; },
+    dns: function () {
+      return [
+        ['l-warn', 'checking whether it is DNS ...'],
+        ['l-err', 'it was DNS.'],
+        ['l-mut', 'it is always DNS. even when it is not, it is.']
+      ];
+    },
+    sandwich: function () { return [['l-err', 'What? Make it yourself.']]; },
+    sandwich_sudo: function () { return [['l-ok', 'Okay.'], ['l-mut', '  — xkcd 149']]; },
+    coffee: function () {
+      return [
+        ['l-err', 'HTTP/1.1 418 I’m a teapot'],
+        ['', 'RFC 2324: the requested entity body is short and stout.'],
+        ['l-mut', 'coffee.service failed to start: no beans found in /dev/kitchen']
+      ];
+    },
+    rmrf: function () {
+      return [
+        ['l-err', 'rm: it is dangerous to operate recursively on "/"'],
+        ['l-err', 'rm: use --no-preserve-root to override this failsafe'],
+        ['l-mut', 'and if you actually pass that flag, we are not working together.']
+      ];
+    },
+    chmod777: function () {
+      return [
+        ['l-warn', 'chmod: applying 777 to /'],
+        ['l-err', 'permission model: deleted'],
+        ['l-err', 'security posture: deleted'],
+        ['l-mut', 'may whatever you believe in have mercy on your uptime.']
+      ];
+    },
+    forkbomb: function () {
+      return [
+        ['l-err', 'bash: fork: retry: Resource temporarily unavailable'],
+        ['l-warn', '[ WARN ] cgroup limits caught it. this is why we set cgroup limits.'],
+        ['l-mut', 'nice try. pids.max = 512.']
+      ];
+    },
+    vim: function () {
+      return [
+        ['l-warn', 'vim opened. you are now trapped.'],
+        ['l-mut', 'to exit: press Esc, then type :q! and press Enter.'],
+        ['l-mut', 'you have been here before. we both know it.']
+      ];
+    },
+    quit: function () { return [['l-ok', 'you escaped vim. respect.']]; },
+    emacs: function () { return [['l-mut', 'emacs: a great operating system, lacking only a decent editor.']]; },
+    nano: function () { return [['l-ok', 'nano: no shame in this. the shortcuts are literally on the screen.']]; },
+    ssh: function (a) {
+      if (/root@(prod|production)/i.test(a)) {
+        return [
+          ['l-err', 'Permission denied (publickey).'],
+          ['l-mut', 'root login disabled, password auth disabled, source IP not in allowlist.'],
+          ['l-ok', 'that is the correct answer, by the way.']
+        ];
+      }
+      return [['l-mut', 'ssh: connect to host ' + (esc(a) || 'somewhere') + ' port 22: Connection refused'], ['l-mut', 'firewalls do work.']];
+    },
+    kubectl: function () {
+      return [
+        ['l-mut', 'kubectl get pods'],
+        ['', 'NAME                      READY   STATUS             RESTARTS'],
+        ['', 'legacy-monolith-7f9b     1/1     Running            0'],
+        ['l-warn', 'hopes-and-dreams-2x8      0/1     CrashLoopBackOff   247'],
+        ['l-mut', 'have you tried turning the cluster off and on again? (that is 47 pods)']
+      ];
+    },
+    docker: function () {
+      return [
+        ['l-mut', 'Unable to find image "it-works-on-my-machine:latest" locally'],
+        ['l-ok', 'good news: that is exactly the problem containers solve.']
+      ];
+    },
+    git: function (a) {
+      if (/^blame/i.test(a)) return [['l-err', 'fatal: everybody is responsible.'], ['l-mut', 'that is literally what DevOps means.']];
+      if (/^push.*(-f|--force)/i.test(a)) return [['l-err', 'remote: rejected — protected branch'], ['l-mut', 'you will thank me on Monday.']];
+      return [['l-mut', 'git: on branch main. nothing to commit, working tree suspiciously clean.']];
+    },
+    nmap: function () {
+      return [
+        ['l-mut', 'Starting Nmap ... scanning ant0n.dev'],
+        ['', 'PORT    STATE  SERVICE'],
+        ['', '22/tcp  open   ssh      (key-only, allowlisted)'],
+        ['', '443/tcp open   https    (TLS 1.3, HSTS)'],
+        ['l-mut', 'everything else: filtered. Nice try, though — I do this professionally.']
+      ];
+    },
+    pray: function () {
+      return [
+        ['l-err', 'Failed to start pray.service: Unit pray.service not found.'],
+        ['l-mut', 'read the logs instead. rule [01].']
+      ];
+    },
+    man: function (a) {
+      if (!a) return [['l-mut', 'What manual page do you want?'], ['l-mut', 'try: man postfix']];
+      return [['l-ok', 'reading man pages instead of guessing. we are going to get along.'], ['l-mut', 'No manual entry for ' + esc(a) + ' — but the instinct was right.']];
+    },
+    sudobangbang: function () { return [['l-ok', 'the single most satisfying keystroke sequence in computing.']]; },
+    hire: function () {
+      return [
+        ['l-cy', 'checking availability ...'],
+        ['l-ok', 'STATUS: available'],
+        ['', 'audits · consulting · long-term work · emergencies'],
+        ['l-mut', 'email me@ant0n.dev — usually replies within 24h']
+      ];
+    },
+    salary: function () {
+      return [
+        ['l-mut', 'cat /etc/rates'],
+        ['l-warn', 'permission denied'],
+        ['l-mut', 'negotiable, scope-dependent, and cheaper than an outage. just ask.']
+      ];
+    },
+    password: function () { return [['l-ok', 'correct horse battery staple'], ['l-mut', '  — xkcd 936. now enable 2FA.']]; },
+    sudo: function (args) {
+      if (/rm\s+-rf\s+\/(\s|$)/.test(args)) {
+        return [
+          ['l-err', 'rm: refusing to remove "/": permission denied by common sense'],
+          ['l-warn', '[ WARN ] backups before changes — rule [02]'],
+          ['l-mut', 'nice try though.']
+        ];
+      }
+      return [['l-err', 'anton is not in the sudoers file. This incident has been reported.'], ['l-mut', '(it has also been logged, correlated, alerted on and added to a dashboard.)']];
+    },
+
+    /* ============================================================
+       JOKES — animated (return promises)
+       ============================================================ */
+    sl: async function () {
+      var ART = [
+        '      ====        ________                ___________',
+        '  _D _|  |_______/        \\__I_I_____===__|_________|',
+        '   |(_)---  |   H\\________/ |   |        =|___ ___|  ',
+        '   /     |  |   H  |  |     |   |         ||_| |_||  ',
+        '  |      |  |   H  |__--------------------| [___] |  ',
+        '  | ________|___H__/__|_____/[][]~\\_______|       |  ',
+        '  |/ |   |-----------I_____I [][] []  D   |=======|__',
+        '    \\_/   \\O=====O=========O=========O_/   \\_/       '
+      ];
+      var W = cols(), width = 54, p = line('', 'l-ok');
+      p.style.whiteSpace = 'pre';
+      for (var off = W; off > -width; off -= 3) {
+        var frame = ART.map(function (l) {
+          var s = off >= 0 ? ' '.repeat(off) + l : l.slice(-off);
+          return esc(s.slice(0, W));
+        }).join('\n');
+        p.innerHTML = frame;
+        body.scrollTop = body.scrollHeight;
+        await sleep(48);
+      }
+      p.remove();
+      line('<span class="l-mut">you typed `ls` wrong. now look what you have done.</span>');
+    },
+
+    hack: async function (target) {
+      var t = esc(target || 'the.mainframe');
+      line('<span class="l-warn">[*]</span> initialising exploit framework ...');
+      await sleep(420);
+      line('<span class="l-warn">[*]</span> scanning 10.0.0.0/24 ............ <span class="l-ok">254 hosts up</span>');
+      await sleep(380);
+      await bar('<span class="l-warn">[*]</span> bypassing firewall', 1100);
+      await bar('<span class="l-warn">[*]</span> cracking WPA2 handshake', 900);
+      line('<span class="l-err">[!] ACCESS GRANTED — ' + t + '</span>');
+      await sleep(500);
+      await bar('<span class="l-warn">[*]</span> downloading mainframe', 800);
+      await sleep(300);
+      line('<span class="l-mut">... just kidding.</span>');
+      line('<span class="l-ok">I do read-only audits, not intrusions. Everything I touch is authorised, logged and reversible.</span>');
+    },
+
+    htop: async function () {
+      var procs = [
+        ['reading-logs', 18], ['writing-runbooks', 9], ['refusing-to-guess', 62],
+        ['coffee-daemon', 41], ['postfix', 3], ['prometheus', 7]
+      ];
+      var p = line('', '');
+      p.style.whiteSpace = 'pre';
+      for (var f = 0; f < 12; f++) {
+        var rows = procs.map(function (pr) {
+          var v = Math.max(1, Math.min(99, pr[1] + rnd(-9, 9)));
+          var n = Math.round(v / 5);
+          return '  ' + pr[0].padEnd(20) +
+                 '[<span class="' + (v > 70 ? 'l-err' : v > 40 ? 'l-warn' : 'l-ok') + '">' +
+                 '|'.repeat(n) + '</span>' + ' '.repeat(20 - n) + '] ' + v.toFixed(1) + '%';
+        }).join('\n');
+        p.innerHTML = '  <span class="l-cy">PROCESS</span>' + ' '.repeat(14) + '<span class="l-cy">CPU</span>\n' + rows;
+        body.scrollTop = body.scrollHeight;
+        await sleep(180);
+      }
+      line('<span class="l-mut">^C — the only process actually consuming CPU here is the matrix rain.</span>');
+    },
+
+    logs: async function () {
+      var SRC = [
+        ['l-mut', 'systemd[1]: Started Daily apt download activities.'],
+        ['l-ok', 'postfix/smtpd[2041]: connect from mail-01.example.com[203.0.113.7]'],
+        ['l-ok', 'postfix/qmgr[1188]: A31F2: from=&lt;noreply@example.com&gt;, size=4211, nrcpt=1'],
+        ['l-warn', 'sshd[4412]: Failed password for invalid user admin from 45.9.148.x port 51422'],
+        ['l-warn', 'fail2ban.actions: Ban 45.9.148.x'],
+        ['l-mut', 'kernel: [UFW BLOCK] IN=eth0 OUT= SRC=185.220.101.x DPT=23'],
+        ['l-ok', 'wg-quick: peer handshake ok, latest-handshake 12s ago'],
+        ['l-err', 'zed: eid=42 class=statechange pool=tank vdev state=DEGRADED'],
+        ['l-ok', 'restic: snapshot 9f2c1a saved — 1.2 GiB in 41s'],
+        ['l-mut', 'prometheus: scrape target node-04 up=1'],
+        ['l-warn', 'certbot: certificate for example.com expires in 9 days'],
+        ['l-ok', 'systemd[1]: miab-radar.service: Succeeded.']
+      ];
+      for (var i = 0; i < 11; i++) {
+        var r = pick(SRC);
+        line('<span class="l-mut">' + new Date().toTimeString().slice(0, 8) + '</span> ' + r[1], r[0]);
+        await sleep(rnd(180, 420));
+      }
+      line('<span class="l-mut">^C</span>');
+      line('<span class="l-ok">this is the job: 11 lines out of 400k, and only two of them mattered.</span>');
+    },
+
+    ping: async function (host) {
+      var h = esc((host || 'ant0n.dev').split(/\s+/)[0]);
+      line('PING ' + h + ' 56(84) bytes of data.');
+      var times = [];
+      for (var i = 1; i <= 4; i++) {
+        await sleep(rnd(300, 620));
+        var t = rnd(6, 34);
+        times.push(t);
+        line('64 bytes from ' + h + ': icmp_seq=' + i + ' ttl=54 time=<span class="l-ok">' + t.toFixed(1) + '</span> ms');
+      }
+      var min = Math.min.apply(null, times), max = Math.max.apply(null, times);
+      var avg = times.reduce(function (a, b) { return a + b; }, 0) / times.length;
+      line('<span class="l-mut">--- ' + h + ' ping statistics ---</span>');
+      line('4 packets transmitted, 4 received, <span class="l-ok">0% packet loss</span>');
+      line('rtt min/avg/max = ' + min.toFixed(1) + '/' + avg.toFixed(1) + '/' + max.toFixed(1) + ' ms');
+      line('<span class="l-mut">still up. still boring. exactly as intended.</span>');
+    },
+
+    reboot: async function () {
+      for (var i = 3; i > 0; i--) { line('<span class="l-warn">Rebooting in ' + i + ' ...</span>'); await sleep(600); }
+      line('<span class="l-err">Broadcast message: the system is going down NOW!</span>');
+      await sleep(700);
+      line('<span class="l-ok">... nah. Announced maintenance windows only. Rule [02].</span>');
+    },
+
+    urandom: async function () {
+      var G = 'ABCDEF0123456789abcdef!@#$%^&*()_+-=[]{}|;:,.<>/?~';
+      for (var i = 0; i < 4; i++) {
+        var s = '';
+        for (var j = 0; j < cols() - 2; j++) s += G[(Math.random() * G.length) | 0];
+        line('<span class="l-mut">' + esc(s) + '</span>');
+        await sleep(160);
+      }
+      line('<span class="l-warn">^C — entropy pool intact. Your terminal survived.</span>');
+    },
+
+    matrix: function () {
+      if (!window.MATRIX) return [['l-mut', 'matrix module not loaded.']];
+      var on = window.MATRIX.toggle();
+      return [['l-ok', 'matrix rain: ' + (on ? 'ON' : 'OFF')], ['l-mut', on ? 'follow the white rabbit.' : 'unplugged. much better for the battery.']];
+    }
+  };
+
+  /* aliases */
+  CMDS['?'] = CMDS.help;
+  CMDS.cmds = CMDS.commands;
+  CMDS.list = CMDS.commands;
+  CMDS.all = CMDS.commands;
+  CMDS.menu = CMDS.commands;
+  CMDS.about = CMDS.whoami;
+  CMDS.stack = CMDS.skills;
+  CMDS.hire = CMDS.hire;
+  CMDS.work = CMDS.hire;
+  CMDS.rate = CMDS.salary;
+  CMDS.excuse = CMDS.bofh;
+  CMDS.brew = CMDS.coffee;
+  CMDS.vi = CMDS.vim;
+  CMDS[':q'] = CMDS.quit;
+  CMDS[':q!'] = CMDS.quit;
+  CMDS[':wq'] = CMDS.quit;
+  CMDS.shutdown = CMDS.reboot;
+  CMDS.tail = CMDS.logs;
+  CMDS.dmesg = CMDS.logs;
+  CMDS.journalctl = CMDS.logs;
+  CMDS.k9s = CMDS.kubectl;
+  CMDS.k = CMDS.kubectl;
+  CMDS.telnet = CMDS.ssh;
+  CMDS.neo = CMDS.matrix;
+
+  /* cowsay needs the argument, keep it separate */
+  CMDS.cowsay = function (a) {
+    var msg = (a || pick(FUN.fortunes) || 'moo').slice(0, 46);
+    var bar = '_'.repeat(msg.length + 2);
+    var low = '-'.repeat(msg.length + 2);
+    return [
+      ['l-ok', esc(' ' + bar)],
+      ['l-ok', esc('< ' + msg + ' >')],
+      ['l-ok', esc(' ' + low)],
+      ['l-ok', esc('        \\   ^__^')],
+      ['l-ok', esc('         \\  (oo)\\_______')],
+      ['l-ok', esc('            (__)\\       )\\/\\')],
+      ['l-ok', esc('                ||----w |')],
+      ['l-ok', esc('                ||     ||')]
+    ];
+  };
+
+  /* ---------- whole-line patterns (multi-word jokes) ---------- */
+  var RAW = [
+    [/^:\s*\(\s*\)\s*\{.*\}\s*;?\s*:/, 'forkbomb'],
+    [/^sudo\s+make\s+me\s+a\s+sandwich/i, 'sandwich_sudo'],
+    [/^make\s+me\s+a\s+sandwich/i, 'sandwich'],
+    [/^(make|get|brew)\s+(me\s+)?(a\s+)?coffee/i, 'coffee'],
+    [/^rm\s+-rf\s+\/(\s|$)/i, 'rmrf'],
+    [/^chmod\s+(-R\s+)?777\s+\//i, 'chmod777'],
+    [/^tail\s+-f/i, 'logs'],
+    [/^cat\s+\/dev\/u?random/i, 'urandom'],
+    [/^it'?s?\s*(always\s*)?dns/i, 'dns'],
+    [/^sudo\s+!!/, 'sudobangbang'],
+    [/^(hack|hack\s+the\s+planet)$/i, 'hack'],
+    [/^apt(-get)?\s+install\s+coffee/i, 'coffee'],
+    [/^how\s+do\s+i\s+(exit|quit)\s+vim/i, 'vim'],
+    [/^help\s+(--?a(ll)?|-h)$/i, 'commands'],
+    [/^ls\s+\/(usr\/)?s?bin/i, 'commands']
+  ];
+
+  /* ---------- dispatcher ---------- */
+  async function run(raw) {
+    var trimmed = raw.trim();
+    if (!trimmed) return;
+    if (trimmed === 'clear' || trimmed === 'cls') { body.innerHTML = ''; return; }
+
+    var name = null, args = '';
+    for (var i = 0; i < RAW.length; i++) {
+      if (RAW[i][0].test(trimmed)) { name = RAW[i][1]; args = trimmed.replace(/^\S+\s*/, ''); break; }
+    }
+    if (!name) {
+      var parts = trimmed.split(/\s+/);
+      name = (parts.shift() || '').toLowerCase();
+      args = parts.join(' ');
+    }
+
+    var fn = CMDS[name];
+    if (!fn) {
+      line('<span class="l-err">' + esc(name) + ': command not found</span>');
+      line('<span class="l-mut">try `help` — or just guess, half the fun is hidden</span>');
+      return;
+    }
+
+    var out;
+    try { out = fn(args); } catch (e) { line('<span class="l-err">internal error: ' + esc(e.message) + '</span>'); return; }
+    if (out && typeof out.then === 'function') { await out; return; }
+    if (Array.isArray(out)) out.forEach(function (r) { line(r[1], r[0]); });
+  }
+
+  /* ---------- scripted intro ---------- */
+  async function intro() {
+    var script = [
+      ['whoami', [
+        ['l-ok', 'Anton Babaskin — DevOps &amp; Linux infrastructure engineer'],
+        ['l-mut', '15+ years of production systems. Ukraine, remote worldwide.']
+      ]],
+      ['systemctl status infrastructure.service', [
+        ['l-ok', '● infrastructure.service — Everything that must not go down'],
+        ['l-mut', '     Loaded: loaded (/etc/systemd/system/infrastructure.service; enabled)'],
+        ['', '     Active: <span class="l-ok">active (running)</span> since 2010; 15 years ago'],
+        ['l-mut', '      Tasks: audits, hardening, mail, monitoring, backups, vpn, ai']
+      ]],
+      ['./run-audit.sh --target your-infra --mode read-only', [
+        ['', OK + 'inventory collected'],
+        ['', OK + 'security posture evaluated'],
+        ['', OK + 'backups verified — restore tested'],
+        ['l-warn', '[ WARN ] 3 findings need attention'],
+        ['l-cy', 'report ready → scroll down, or type `help`']
+      ]]
+    ];
+
+    for (var i = 0; i < script.length; i++) {
+      if (aborted) return;
+      await typeCmd(script[i][0]);
+      await sleep(180);
+      for (var j = 0; j < script[i][1].length; j++) {
+        if (aborted) return;
+        line(script[i][1][j][1], script[i][1][j][0]);
+        await sleep(60);
+      }
+      line('&nbsp;');
+      await sleep(300);
+    }
+  }
+
+  /* ---------- wiring ---------- */
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    aborted = true;
+    if (running) return;
+    var v = input.value;
+    if (!v.trim()) return;
+    line(PS1 + esc(v), 'l-cmd');
+    history.push(v);
+    hIdx = history.length;
+    input.value = '';
+    running = true;
+    Promise.resolve(run(v)).catch(function () {}).then(function () {
+      running = false;
+      line('&nbsp;');
+      input.focus();
+    });
+  });
+
+  var NAMES = Object.keys(CMDS).sort();
+
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (hIdx > 0) { hIdx--; input.value = history[hIdx]; }
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (hIdx < history.length - 1) { hIdx++; input.value = history[hIdx]; }
+      else { hIdx = history.length; input.value = ''; }
+    } else if (e.key === 'Tab') {
+      e.preventDefault();
+      var v = input.value.trim().toLowerCase();
+      if (!v) return;
+      var hits = NAMES.filter(function (n) { return n.indexOf(v) === 0; });
+      if (hits.length === 1) input.value = hits[0] + ' ';
+      else if (hits.length > 1) line('<span class="l-mut">' + hits.join('  ') + '</span>');
+    } else if (e.key === 'l' && e.ctrlKey) {
+      e.preventDefault();
+      body.innerHTML = '';
+    }
+  });
+
+  document.getElementById('termCard').addEventListener('click', function () {
+    if (!window.getSelection().toString()) input.focus();
+  });
+
+  window.TERM = {
+    start: intro,
+    focus: function () { input.focus(); },
+    exec: function (cmd) {
+      aborted = true;
+      if (running) return;
+      line(PS1 + esc(cmd), 'l-cmd');
+      running = true;
+      Promise.resolve(run(cmd)).catch(function () {}).then(function () {
+        running = false;
+        line('&nbsp;');
+      });
+    }
+  };
+
+  /* ---------- clickable quick-run chips under the terminal ---------- */
+  var chips = document.getElementById('termChips');
+  if (chips) {
+    chips.addEventListener('click', function (e) {
+      var b = e.target.closest('button[data-cmd]');
+      if (!b) return;
+      window.TERM.exec(b.dataset.cmd);
+      input.focus();
+    });
+  }
+})();
+
+;
+/* ============================================================
+   app.js — site engine
+   boot · nav · reveal · counters · ticker · stack tabs ·
+   project filters · command palette · clocks · pointer FX
+   ============================================================ */
+(function () {
+  'use strict';
+
+  var S = window.SITE || {};
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+
+  /* ============================ TOAST ============================ */
+  var toastEl = $('#toast'), toastT;
+  function toast(msg) {
+    if (!toastEl) return;
+    toastEl.textContent = msg;
+    toastEl.classList.add('is-on');
+    clearTimeout(toastT);
+    toastT = setTimeout(function () { toastEl.classList.remove('is-on'); }, 2200);
+  }
+
+  /* ============================ BOOT ============================= */
+  function boot() {
+    var wrap = $('#boot'), log = $('#bootLog'), bar = $('.boot__bar i'), skip = $('#bootSkip');
+    if (!wrap) { afterBoot(); return; }
+
+    var seen = false;
+    try { seen = sessionStorage.getItem('booted') === '1'; } catch (e) {}
+
+    if (seen || reduce) { end(true); return; }
+
+    var lines = S.boot || [], i = 0, timer;
+    function step() {
+      if (i >= lines.length) { setTimeout(function () { end(); }, 380); return; }
+      var l = lines[i];
+      var p = document.createElement('p');
+      p.style.margin = '0';
+      p.innerHTML = (l[0] === 'ok' ? '[ <b>OK</b> ] ' : '[ <i>..</i> ] ') + l[1];
+      log.appendChild(p);
+      if (bar) bar.style.width = Math.round(((i + 1) / lines.length) * 100) + '%';
+      i++;
+      timer = setTimeout(step, 90 + Math.random() * 130);
+    }
+    step();
+
+    function end(instant) {
+      clearTimeout(timer);
+      try { sessionStorage.setItem('booted', '1'); } catch (e) {}
+      wrap.classList.add('is-done');
+      setTimeout(function () { wrap.remove(); }, instant ? 0 : 520);
+      afterBoot();
+    }
+
+    if (skip) skip.addEventListener('click', function () { end(); });
+    document.addEventListener('keydown', function esc(e) {
+      if (e.key === 'Escape') { end(); document.removeEventListener('keydown', esc); }
+    });
+  }
+
+  function afterBoot() {
+    if (window.TERM) window.TERM.start();
+    typeRoles();
+  }
+
+  /* ========================= TYPED ROLES ========================= */
+  function typeRoles() {
+    var el = $('#typedRole');
+    if (!el) return;
+    var list = S.roles || [];
+    if (!list.length) return;
+    if (reduce) { el.textContent = list[0]; return; }
+
+    var i = 0, j = 0, del = false;
+    (function tick() {
+      var w = list[i];
+      j += del ? -1 : 1;
+      el.textContent = w.slice(0, j);
+      var d = del ? 30 : 62;
+      if (!del && j === w.length) { del = true; d = 1700; }
+      else if (del && j === 0) { del = false; i = (i + 1) % list.length; d = 260; }
+      setTimeout(tick, d);
+    })();
+  }
+
+  /* ============================ HEADER =========================== */
+  var hdr = $('#hdr'), nav = $('#nav'), burger = $('#burger');
+  var progress = $('#scrollProgress');
+
+  function onScroll() {
+    var y = window.scrollY || 0;
+    if (hdr) hdr.classList.toggle('is-stuck', y > 24);
+    if (progress) {
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  if (burger && nav) {
+    burger.addEventListener('click', function () {
+      var open = nav.classList.toggle('is-open');
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    nav.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') {
+        nav.classList.remove('is-open');
+        burger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  /* ========================== SCROLLSPY ========================== */
+  var navLinks = $$('#nav a').filter(function (a) {
+    return (a.getAttribute('href') || '').charAt(0) === '#';
+  });
+  var sections = navLinks.map(function (a) { return $(a.getAttribute('href')); }).filter(Boolean);
+  if ('IntersectionObserver' in window && sections.length) {
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        navLinks.forEach(function (a) {
+          a.classList.toggle('is-active', a.getAttribute('href') === '#' + en.target.id);
+        });
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    sections.forEach(function (s) { spy.observe(s); });
+  }
+
+  /* =========================== REVEAL ============================ */
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en, k) {
+        if (!en.isIntersecting) return;
+        var el = en.target;
+        var delay = Math.min(k * 60, 240);
+        setTimeout(function () { el.classList.add('is-in'); }, delay);
+        io.unobserve(el);
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
+    $$('.reveal').forEach(function (el) { io.observe(el); });
+  } else {
+    $$('.reveal').forEach(function (el) { el.classList.add('is-in'); });
+  }
+
+  /* ========================== COUNTERS =========================== */
+  function countUp(el) {
+    var target = parseInt(el.dataset.count, 10) || 0;
+    var suffix = el.dataset.suffix || '';
+    if (reduce) { el.textContent = target + suffix; return; }
+    var t0 = performance.now(), dur = 1100;
+    (function f(now) {
+      var p = Math.min((now - t0) / dur, 1);
+      var e = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * e) + suffix;
+      if (p < 1) requestAnimationFrame(f);
+    })(t0);
+  }
+  var counters = $$('[data-count]');
+  if (counters.length && 'IntersectionObserver' in window) {
+    var cio = new IntersectionObserver(function (es) {
+      es.forEach(function (en) { if (en.isIntersecting) { countUp(en.target); cio.unobserve(en.target); } });
+    }, { threshold: 0.5 });
+    counters.forEach(function (c) { cio.observe(c); });
+  } else {
+    counters.forEach(countUp);
+  }
+
+  /* =========================== TICKER ============================ */
+  (function () {
+    var row = $('#tickerRow');
+    if (!row || !S.ticker) return;
+    var html = S.ticker.map(function (t) { return '<span>' + t + '</span>'; }).join('');
+    row.innerHTML = html + html; // duplicated for a seamless loop
+  })();
+
+  /* ========================== STACK TABS ========================= */
+  (function () {
+    var tabs = $('#stackTabs'), panel = $('#stackPanel');
+    if (!tabs || !panel || !S.stack) return;
+
+    S.stack.forEach(function (g, i) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.setAttribute('role', 'tab');
+      b.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+      b.dataset.id = g.id;
+      b.innerHTML = g.label + (g.tag ? '<i class="tabtag">' + g.tag + '</i>' : '');
+      tabs.appendChild(b);
+    });
+
+    function render(g) {
+      panel.innerHTML =
+        '<p class="stack__why"><b>What this is:</b> ' + g.why + '</p>' +
+        '<p class="stack__lead">' + g.lead + '</p>' +
+        '<div class="chips">' +
+        g.items.map(function (it, i) {
+          return '<span class="chip" style="animation-delay:' + (i * 22) + 'ms">' + it + '</span>';
+        }).join('') + '</div>';
+    }
+
+    tabs.addEventListener('click', function (e) {
+      var b = e.target.closest('button');
+      if (!b) return;
+      $$('button', tabs).forEach(function (x) { x.setAttribute('aria-selected', String(x === b)); });
+      var g = S.stack.filter(function (x) { return x.id === b.dataset.id; })[0];
+      if (g) render(g);
+    });
+
+    render(S.stack[0]);
+  })();
+
+  /* ========================== PROJECTS =========================== */
+  (function () {
+    var grid = $('#repos'), filters = $('#filters');
+    if (!grid || !S.projects) return;
+
+    var featuredOnly = grid.dataset.mode === 'featured';
+    var pool = featuredOnly
+      ? S.projects.filter(function (p) { return p.featured; })
+      : S.projects;
+
+    function card(p) {
+      return '' +
+      '<article class="repo reveal' + (p.ai ? ' is-ai' : '') + '" data-cats="' + p.cats.join(' ') + '">' +
+        '<div class="repo__head">' +
+          '<h3 class="repo__name">' + p.name + '</h3>' +
+          '<span class="repo__lang">' + p.lang + '</span>' +
+        '</div>' +
+        (p.plain ? '<p class="repo__plain">' + p.plain + '</p>' : '') +
+        '<p class="repo__desc">' + p.desc + '</p>' +
+        '<div class="repo__tags">' + p.tags.map(function (t) { return '<span>' + t + '</span>'; }).join('') + '</div>' +
+        '<a class="repo__link" href="' + p.url + '" target="_blank" rel="noopener">git clone ' + p.name + ' →</a>' +
+      '</article>';
+    }
+
+    function draw(cat) {
+      var list = cat && cat !== 'all'
+        ? pool.filter(function (p) { return p.cats.indexOf(cat) > -1; })
+        : pool;
+      grid.innerHTML = list.length
+        ? list.map(card).join('')
+        : '<p class="repos__empty">no projects in this category — try <b>all</b></p>';
+      $$('.repo', grid).forEach(function (el, i) {
+        setTimeout(function () { el.classList.add('is-in'); }, i * 45);
+      });
+    }
+
+    if (filters && S.filters) {
+      filters.innerHTML = S.filters.map(function (f, i) {
+        return '<button type="button" class="' + (i === 0 ? 'is-on' : '') + '" data-cat="' + f + '">' + f + '</button>';
+      }).join('');
+      filters.addEventListener('click', function (e) {
+        var b = e.target.closest('button');
+        if (!b) return;
+        $$('button', filters).forEach(function (x) { x.classList.toggle('is-on', x === b); });
+        draw(b.dataset.cat);
+      });
+    }
+    draw('all');
+  })();
+
+  /* ======================= CARD SPOTLIGHT ======================== */
+  if (!reduce && window.matchMedia('(hover:hover)').matches) {
+    document.addEventListener('mousemove', function (e) {
+      var c = e.target.closest ? e.target.closest('.card') : null;
+      if (!c) return;
+      var r = c.getBoundingClientRect();
+      c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    }, { passive: true });
+
+    var spot = $('#spot'), sx = 0, sy = 0, tx = 0, ty = 0, sraf;
+    document.addEventListener('mousemove', function (e) { tx = e.clientX; ty = e.clientY; }, { passive: true });
+    (function loop() {
+      sx += (tx - sx) * 0.09; sy += (ty - sy) * 0.09;
+      if (spot) spot.style.transform = 'translate(' + sx + 'px,' + sy + 'px)';
+      sraf = requestAnimationFrame(loop);
+    })();
+  }
+
+  /* ========================== COPY MAIL ========================== */
+  function copyMail() {
+    var mail = 'me@ant0n.dev';
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(mail).then(function () { toast('copied: ' + mail); },
+        function () { toast(mail); });
+    } else {
+      toast(mail);
+    }
+  }
+  var cm = $('#copyMail');
+  if (cm) cm.addEventListener('click', copyMail);
+
+  /* ======================= COMMAND PALETTE ======================= */
+  (function () {
+    var pal = $('#palette'), inp = $('#paletteInput'), list = $('#paletteList'), btn = $('#paletteBtn');
+    if (!pal || !inp || !list) return;
+
+    var items = S.palette || [];
+    var view = items.slice(), sel = 0;
+
+    var actions = {
+      copyMail: copyMail,
+      toggleMatrix: function () {
+        if (!window.MATRIX) return;
+        toast(window.MATRIX.toggle() ? 'matrix rain: on' : 'matrix rain: off');
+      }
+    };
+
+    function render() {
+      list.innerHTML = view.map(function (it, i) {
+        return '<li role="option" data-i="' + i + '" class="' + (i === sel ? 'is-sel' : '') + '">' +
+               '<span class="pk">' + it.k + '</span>' + it.label + '</li>';
+      }).join('') || '<li class="is-empty">no matches</li>';
+    }
+    function open() {
+      pal.hidden = false;
+      inp.value = ''; view = items.slice(); sel = 0; render();
+      setTimeout(function () { inp.focus(); }, 20);
+    }
+    function close() { pal.hidden = true; }
+    function exec(it) {
+      if (!it) return;
+      close();
+      if (it.action && actions[it.action]) { actions[it.action](); return; }
+      if (!it.href) return;
+
+      var file = location.protocol === 'file:';
+      var abs = function (h) { return file ? (h.replace(/^\//, '') || 'index.html') : h; };
+
+      if (it.href.charAt(0) === '#') {
+        var t = $(it.href);
+        if (t) t.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+        else window.location.href = abs('/index.html') + it.href;  // section lives on the home page
+      } else if (it.href.charAt(0) === '/') {
+        window.location.href = abs(it.href);
+      } else if (it.href.indexOf('mailto:') === 0) {
+        window.location.href = it.href;
+      } else {
+        window.open(it.href, '_blank', 'noopener');
+      }
+    }
+
+    inp.addEventListener('input', function () {
+      var q = inp.value.toLowerCase().trim();
+      view = q ? items.filter(function (it) { return (it.label + ' ' + it.k).toLowerCase().indexOf(q) > -1; }) : items.slice();
+      sel = 0; render();
+    });
+    inp.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowDown') { e.preventDefault(); sel = Math.min(sel + 1, view.length - 1); render(); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); sel = Math.max(sel - 1, 0); render(); }
+      else if (e.key === 'Enter') { e.preventDefault(); exec(view[sel]); }
+      else if (e.key === 'Escape') { close(); }
+    });
+    list.addEventListener('click', function (e) {
+      var li = e.target.closest('li[data-i]');
+      if (li) exec(view[+li.dataset.i]);
+    });
+    pal.addEventListener('click', function (e) { if (e.target === pal) close(); });
+    if (btn) btn.addEventListener('click', open);
+
+    document.addEventListener('keydown', function (e) {
+      var typing = /^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName);
+      if ((e.key === 'k' || e.key === 'K') && (e.metaKey || e.ctrlKey)) { e.preventDefault(); pal.hidden ? open() : close(); }
+      else if (e.key === '/' && !typing && pal.hidden) { e.preventDefault(); open(); }
+      else if (e.key === 'Escape' && !pal.hidden) { close(); }
+    });
+  })();
+
+  /* =========================== KONAMI ============================ */
+  (function () {
+    var SEQ = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+    var pos = 0;
+    document.addEventListener('keydown', function (e) {
+      var k = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+      pos = (k === SEQ[pos]) ? pos + 1 : (k === SEQ[0] ? 1 : 0);
+      if (pos !== SEQ.length) return;
+      pos = 0;
+      document.body.classList.add('konami');
+      setTimeout(function () { document.body.classList.remove('konami'); }, 2200);
+      toast('↑↑↓↓←→←→BA — root access granted (not really)');
+      if (window.MATRIX && !window.MATRIX.isOn()) window.MATRIX.toggle();
+      if (window.TERM) {
+        var t = $('#top');
+        if (t) t.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+        setTimeout(function () { window.TERM.exec('hack the.planet'); }, 700);
+      }
+    });
+  })();
+
+  /* ============================ CLOCKS =========================== */
+  (function () {
+    var clock = $('#clock'), kyiv = $('#kyiv'), up = $('#uptime'), year = $('#year');
+    var t0 = Date.now();
+    if (year) year.textContent = new Date().getFullYear();
+
+    function pad(n) { return n < 10 ? '0' + n : '' + n; }
+    function tick() {
+      var d = new Date();
+      if (clock) clock.textContent = pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds());
+      if (kyiv) {
+        try {
+          kyiv.textContent = new Intl.DateTimeFormat('en-GB', {
+            timeZone: 'Europe/Kyiv', hour: '2-digit', minute: '2-digit', hour12: false
+          }).format(d);
+        } catch (e) { kyiv.textContent = '--:--'; }
+      }
+      if (up) {
+        var s = Math.floor((Date.now() - t0) / 1000);
+        up.textContent = pad(Math.floor(s / 3600)) + ':' + pad(Math.floor(s / 60) % 60) + ':' + pad(s % 60);
+      }
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+
+  /* ====================== SMOOTH ANCHOR NAV ====================== */
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    var id = a.getAttribute('href');
+    if (id === '#' || id.length < 2) return;
+    var t = $(id);
+    if (!t) return;
+    e.preventDefault();
+    t.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+    history.replaceState(null, '', id);
+  });
+
+  /* ============================== GO ============================= */
+  boot();
+
+  /* a friendly note for the curious */
+  try {
+    console.log('%c anton@infra:~$ ', 'background:#00ff9c;color:#04120c;font-weight:700;');
+    console.log('%cLooking under the hood? Good instinct.\nSource: https://github.com/Anton-Babaskin\nSay hi: me@ant0n.dev', 'color:#00d4ff');
+  } catch (e) {}
+})();
+
+</script>
+</body>
+</html>
