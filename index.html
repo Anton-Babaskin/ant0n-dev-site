@@ -392,6 +392,7 @@ code{ font-family:var(--mono); }
 .sec--alt{ background:linear-gradient(180deg, rgba(0,212,255,.022), rgba(0,255,156,.018)); border-block:1px solid var(--line-3); }
 .sec__head{ margin-bottom:44px; max-width:78ch; }
 .sec__num{ font-size:11px; color:var(--cy); letter-spacing:.22em; }
+.sec__cmd{ font-size:11px; color:var(--mut); margin-left:10px; }
 .sec__title{ font-size:clamp(21px,3.3vw,33px); margin:8px 0 12px; color:#e6f5ef; letter-spacing:-.03em; }
 .sec__sub{ color:var(--fg-2); font-size:14.4px; line-height:1.8; margin:0; }
 
@@ -940,9 +941,9 @@ body.konami{ animation:konami 2.2s steps(60); }
 <section class="sec sec--alt" id="services">
   <div class="wrap">
     <header class="sec__head reveal">
-      <span class="sec__num">[02]</span>
-      <h2 class="sec__title">$ ls -la /srv/services</h2>
-      <p class="sec__sub">What you can hire me for. Each one has a fixed scope and a written deliverable — every card starts with a plain-language summary, then the technical detail underneath.</p>
+      <span class="sec__num">[02]</span> <span class="sec__cmd">$ ls -la /srv/services</span>
+      <h2 class="sec__title">What you can hire me for</h2>
+      <p class="sec__sub">Each one has a fixed scope and a written deliverable — every card starts with a plain-language summary, then the technical detail underneath.</p>
     </header>
 
     <div class="cards">
@@ -1081,9 +1082,9 @@ body.konami{ animation:konami 2.2s steps(60); }
 <section class="sec" id="process">
   <div class="wrap">
     <header class="sec__head reveal">
-      <span class="sec__num">[03]</span>
-      <h2 class="sec__title">$ cat /etc/audit/workflow</h2>
-      <p class="sec__sub">How an engagement actually runs. Predictable, read-only first, and nothing is changed on your systems without your approval.</p>
+      <span class="sec__num">[03]</span> <span class="sec__cmd">$ cat /etc/audit/workflow</span>
+      <h2 class="sec__title">How an engagement works</h2>
+      <p class="sec__sub">Predictable, read-only first, and nothing on your systems changes without your approval.</p>
     </header>
 
     <ol class="steps">
@@ -1115,9 +1116,9 @@ body.konami{ animation:konami 2.2s steps(60); }
 <section class="sec sec--alt" id="ai">
   <div class="wrap">
     <header class="sec__head reveal">
-      <span class="sec__num">[04]</span>
-      <h2 class="sec__title">$ systemctl status ai-ops.service</h2>
-      <p class="sec__sub">Where AI genuinely helps operations — and, more importantly, where it must be kept on a leash.</p>
+      <span class="sec__num">[04]</span> <span class="sec__cmd">$ systemctl status ai-ops.service</span>
+      <h2 class="sec__title">Where AI helps operations &mdash; and where it must not</h2>
+      <p class="sec__sub">Useful in the boring, repetitive parts of operations. Kept on a leash everywhere else.</p>
     </header>
 
     <div class="ai">
@@ -1177,8 +1178,8 @@ body.konami{ animation:konami 2.2s steps(60); }
 <section class="sec sec--alt" id="principles">
   <div class="wrap">
     <header class="sec__head reveal">
-      <span class="sec__num">[06]</span>
-      <h2 class="sec__title">$ cat ~/.engineering_rules</h2>
+      <span class="sec__num">[06]</span> <span class="sec__cmd">$ cat ~/.engineering_rules</span>
+      <h2 class="sec__title">Rules I work by</h2>
       <p class="sec__sub">Five lines that have saved more production systems than any dashboard.</p>
     </header>
 
@@ -1196,8 +1197,8 @@ body.konami{ animation:konami 2.2s steps(60); }
 <section class="sec sec--contact" id="contact">
   <div class="wrap">
     <header class="sec__head reveal">
-      <span class="sec__num">[07]</span>
-      <h2 class="sec__title">$ ./connect.sh</h2>
+      <span class="sec__num">[07]</span> <span class="sec__cmd">$ ./connect.sh</span>
+      <h2 class="sec__title">Get in touch</h2>
       <p class="sec__sub">Tell me what is broken, what you are building, or what you are not sure about. Short reply, no sales funnel.</p>
     </header>
 
@@ -1247,15 +1248,15 @@ body.konami{ animation:konami 2.2s steps(60); }
 <section class="sec sec--alt sec--os" id="projects">
   <div class="wrap">
     <header class="sec__head reveal">
-      <span class="sec__num">[08]</span>
-      <h2 class="sec__title">$ git log --oneline --author=anton</h2>
-      <p class="sec__sub">Tools I wrote for problems I hit on real systems, published as open source. A few highlights — the full catalogue lives on its own page.</p>
+      <span class="sec__num">[08]</span> <span class="sec__cmd">$ git log --oneline --author=anton</span>
+      <h2 class="sec__title">Open-source tools I have built</h2>
+      <p class="sec__sub">Tools I wrote for problems I hit on real systems, published as open source. A few highlights &mdash; the full catalogue is on GitHub.</p>
     </header>
 
     <div class="repos" id="repos" data-mode="featured"></div>
 
     <div class="repos__more reveal">
-      <a class="btn btn--acc" href="https://github.com/Anton-Babaskin?tab=repositories" target="_blank" rel="noopener">All projects &amp; details →</a>
+      <a class="btn btn--acc" href="https://github.com/Anton-Babaskin?tab=repositories" target="_blank" rel="noopener">All projects on GitHub →</a>
       <a class="btn btn--ghost" href="https://github.com/Anton-Babaskin" target="_blank" rel="noopener">GitHub profile ↗</a>
     </div>
   </div>
@@ -1391,17 +1392,17 @@ window.SITE = {
      ============================================================ */
   filters: ['all','devops','mailops','network','automation','ai','desktop'],
   projects: [
-    { name:'miab-radar', lang:'Bash', cats:['mailops','automation','devops'], featured:true,
-      desc:'Production-grade Mail-in-a-Box monitoring &amp; audit tool. Turns service state, queues, logs, DNS, TLS and security signals into one prioritized health view.',
-      plain:'Tells a mail server administrator, in one screen, what is actually broken and what to fix first.',
-      tags:['Postfix','Dovecot','DNS','TLS','Fail2Ban','exit codes'],
-      url:'https://github.com/Anton-Babaskin/miab-radar' },
+    { name:'MoveMailbox', lang:'Go', cats:['mailops','automation'], featured:true,
+      desc:'Self-hosted web UI for IMAP-to-IMAP mailbox migrations, built on imapsync. Folder structure and message flags survive the move, and progress is reported per account instead of running as one silent batch.',
+      plain:'Moves company mailboxes to a new email provider without losing anything &mdash; and shows you it worked.',
+      tags:['Go','imapsync','IMAP','self-hosted'],
+      url:'https://github.com/Anton-Babaskin/MoveMailbox' },
 
-    { name:'miab-sentry', lang:'Python', cats:['mailops','ai','automation'], ai:true, featured:true,
-      desc:'Telegram MailOps agent that manages and diagnoses mail servers over SSH from a separate control node. Key-based auth, SQLite audit log, optional Claude / OpenAI / OpenRouter reasoning.',
-      plain:'Lets you check and repair a mail server from your phone — safely, with every action logged.',
-      tags:['Telegram Bot API','SSH','SQLite','LLM','systemd'],
-      url:'https://github.com/Anton-Babaskin/miab-sentry' },
+    { name:'SysTuneX', lang:'C# / .NET 8', cats:['desktop','automation'], featured:true,
+      desc:'Open-source Windows 10/11 optimizer and FPS monitor: reversible tweaks, smart profiles, Game Mode, cleanup and live system telemetry. Every change is documented and can be undone.',
+      plain:'A desktop tuning tool built on the same rule as production servers: nothing is changed that cannot be changed back.',
+      tags:['.NET 8','WPF','MVVM','WMI','PowerShell'],
+      url:'https://github.com/Anton-Babaskin/SysTuneX' },
 
     { name:'FleetOps', lang:'Python 3.12', cats:['automation','ai','devops'], ai:true, featured:true,
       desc:'Open-source, self-hosted, agentless diagnostics for Linux server fleets. Read-only SSH collection of load, memory, disk and service state, with a CLI and an optional Telegram control surface.',
@@ -1409,19 +1410,55 @@ window.SITE = {
       tags:['asyncssh','Pydantic','Docker Compose','pytest','MIT'],
       url:'https://github.com/Anton-Babaskin/FleetOps' },
 
-    { name:'proxmox-hetzner', lang:'Bash', cats:['automation','network','devops'], featured:true,
-      desc:'Install Proxmox VE on a Hetzner dedicated server without KVM console access — one command handles ISO, auto-install, ZFS RAID-1 and IPv4/IPv6 networking.',
-      plain:'Turns a bare rented server into a working virtualization host with a single command.',
-      tags:['Proxmox VE','ZFS','Hetzner','IPv6'],
-      url:'https://github.com/Anton-Babaskin/proxmox-hetzner' },
-
     { name:'mail-sec-audit', lang:'Bash', cats:['mailops','automation'], featured:true,
-      desc:'Read-only security posture check for production Linux mail servers — MTA services, TLS certificates, DNS records, firewall rules and auth logs. Changes nothing by default.',
+      desc:'Read-only security posture check for production Linux mail servers &mdash; MTA services, TLS certificates, DNS records, firewall rules and auth logs. Changes nothing by default.',
       plain:'A safe security check-up for a mail server: it looks, reports, and touches nothing.',
       tags:['Postfix','Exim','OpenSMTPD','nftables','auditd','MIT'],
       url:'https://github.com/Anton-Babaskin/mail-sec-audit' },
 
-    { name:'Docker-WireGuard-Monitor', lang:'Bash', cats:['network','automation'], featured:true,
+    { name:'postfix-relay-rescue', lang:'Bash', cats:['mailops','automation'],
+      desc:'Provider-neutral SMTP relay failover and safe sender-RHSBL recovery for Postfix. Switches outbound relays and recovers from blocklist events without hand-editing config under pressure.',
+      plain:'Keeps outgoing company email flowing when the mail provider or a blocklist cuts you off.',
+      tags:['Postfix','SMTP','Spamhaus','Debian'],
+      url:'https://github.com/Anton-Babaskin/postfix-relay-rescue' },
+
+    { name:'miab-radar', lang:'Bash', cats:['mailops','automation','devops'],
+      desc:'Production-grade Mail-in-a-Box monitoring &amp; audit tool. Turns service state, queues, logs, DNS, TLS and security signals into one prioritized health view.',
+      plain:'Tells a mail server administrator, in one screen, what is actually broken and what to fix first.',
+      tags:['Postfix','Dovecot','DNS','TLS','Fail2Ban','exit codes'],
+      url:'https://github.com/Anton-Babaskin/miab-radar' },
+
+    { name:'miab-sentry', lang:'Python', cats:['mailops','ai','automation'], ai:true,
+      desc:'Telegram MailOps agent that manages and diagnoses mail servers over SSH from a separate control node. Key-based auth, SQLite audit log, optional Claude / OpenAI / OpenRouter reasoning.',
+      plain:'Lets you check and repair a mail server from your phone &mdash; safely, with every action logged.',
+      tags:['Telegram Bot API','SSH','SQLite','LLM','systemd'],
+      url:'https://github.com/Anton-Babaskin/miab-sentry' },
+
+    { name:'proxmox-hetzner-guide', lang:'Bash', cats:['automation','network','devops'],
+      desc:'Install, validate and recover Proxmox VE 8/9 on Hetzner dedicated servers without KVM console access &mdash; rescue-mode workflow, QEMU/VNC install, ZFS RAID-1, IPv4/IPv6 networking and read-only audit scripts. EN/RU documentation.',
+      plain:'Turns a bare rented server into a working virtualization host &mdash; and gets it back when it breaks.',
+      tags:['Proxmox VE','ZFS','Hetzner','IPv6','QEMU'],
+      url:'https://github.com/Anton-Babaskin/proxmox-hetzner-guide' },
+
+    { name:'postfix-postgrey-whitelist', lang:'Bash', cats:['mailops','automation'],
+      desc:'Manage Postfix and Postgrey client whitelists across any Debian / Ubuntu mail server: bulk import, CIDR and IPv6 support, SPF-derived cloud ranges and fleet auto-sync.',
+      plain:'Stops greylisting from delaying mail you actually want, across every server at once.',
+      tags:['Postfix','Postgrey','SPF','IPv6','Debian'],
+      url:'https://github.com/Anton-Babaskin/postfix-postgrey-whitelist' },
+
+    { name:'MailHunt', lang:'Bash', cats:['mailops'],
+      desc:'Read-only Dovecot mailbox search with CSV reporting and attachment filename matching, aimed at incident response rather than day-to-day admin.',
+      plain:'Finds a specific message or attachment across all mailboxes when something needs investigating.',
+      tags:['Dovecot','Maildir','CSV','incident response'],
+      url:'https://github.com/Anton-Babaskin/MailHunt' },
+
+    { name:'mailtop', lang:'Bash', cats:['mailops'],
+      desc:'Read-only Linux mailbox disk audit with per-account states, mount-aware totals and CSV export.',
+      plain:'Shows which mailboxes are eating the disk before the mail server runs out of space.',
+      tags:['Dovecot','Maildir','disk usage','CSV'],
+      url:'https://github.com/Anton-Babaskin/mailtop' },
+
+    { name:'Docker-WireGuard-Monitor', lang:'Bash', cats:['network','automation'],
       desc:'Health monitoring for containerized WireGuard: container state, interface health, peer connections and connectivity checked every two minutes, with instant Telegram alerts.',
       plain:'Makes sure a company VPN never stays broken silently.',
       tags:['WireGuard','Docker','Telegram','systemd'],
@@ -1434,7 +1471,7 @@ window.SITE = {
       url:'https://github.com/Anton-Babaskin/mail_analyzer.sh' },
 
     { name:'Xray-easy-installer', lang:'Bash', cats:['network'],
-      desc:'One-command installer for Xray VLESS + REALITY + Vision on :443 — generated config, systemd service, firewall rules and an xuser CLI for managing users and links.',
+      desc:'One-command installer for Xray VLESS + REALITY + Vision on :443 &mdash; generated config, systemd service, firewall rules and an xuser CLI for managing users and links.',
       plain:'Stands up a private, censorship-resistant tunnel in one command.',
       tags:['Xray','VLESS','REALITY','systemd','iptables'],
       url:'https://github.com/Anton-Babaskin/Xray-easy-installer' },
@@ -1449,13 +1486,7 @@ window.SITE = {
       desc:'Greylisting visibility: surfaces Postgrey decisions to Telegram so deferred legitimate senders are caught early.',
       plain:'Catches the case where real customer email is being delayed by spam filtering.',
       tags:['Postgrey','Postfix','Telegram'],
-      url:'https://github.com/Anton-Babaskin/postgrey-telegram-notify' },
-
-    { name:'SysTuneX', lang:'C# / .NET 8', cats:['desktop','automation'],
-      desc:'Windows 11 optimizer focused on latency and automated system profiles. Every change is documented and reversible — the same rule I apply to servers.',
-      plain:'A desktop tool built with the same discipline as production systems: every change reversible.',
-      tags:['.NET 8','WPF','MVVM','WMI','PowerShell'],
-      url:'https://github.com/Anton-Babaskin/SysTuneX' }
+      url:'https://github.com/Anton-Babaskin/postgrey-telegram-notify' }
   ],
 
   /* ============================================================
@@ -1520,7 +1551,7 @@ window.SITE = {
     { k:'go',  label:'Engineering principles',       href:'#principles' },
     { k:'go',  label:'Contact',                      href:'#contact'    },
     { k:'go',  label:'Open-source projects',         href:'#projects'   },
-    { k:'ext', label:'All projects (full page)',     href:'https://github.com/Anton-Babaskin?tab=repositories' },
+    { k:'ext', label:'All projects on GitHub',       href:'https://github.com/Anton-Babaskin?tab=repositories' },
     { k:'ext', label:'GitHub — Anton-Babaskin',      href:'https://github.com/Anton-Babaskin' },
     { k:'ext', label:'LinkedIn — anton-babaskin',    href:'https://www.linkedin.com/in/anton-babaskin/' },
     { k:'ext', label:'Telegram — @sen1or_anykey',    href:'https://t.me/sen1or_anykey' },
